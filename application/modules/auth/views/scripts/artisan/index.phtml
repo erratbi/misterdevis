@@ -1,0 +1,151 @@
+<!--data table-->
+<script src="<?= $this->baseUrl( 'resources_fo_ehcg/js/jquery.dataTables.js' ); ?>"></script>
+<script src="<?= $this->baseUrl( 'resources_fo_ehcg/js/dataTables.tableTools.js' ); ?>"></script>
+<script src="<?= $this->baseUrl( 'resources_fo_ehcg/js/jquery.dataTables.bootstrap.js' ); ?>"></script>
+
+<!-- Data table-->
+<link rel="stylesheet" type="text/css" href="<?= $this->baseUrl( 'resources_fo_ehcg/css/libs/dataTables.fixedHeader.css' ); ?>">
+<link rel="stylesheet" type="text/css" href="<?= $this->baseUrl( 'resources_fo_ehcg/css/libs/dataTables.tableTools.css' ); ?>">
+<style>
+	::-webkit-scrollbar-track {
+		-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		background-color: #6A6E9B;
+	}
+	
+	::-webkit-scrollbar {
+		width: 10px;
+		background-color: #6A6E9B;
+	}
+	
+	::-webkit-scrollbar-thumb {
+		background-color: #1B9CDC;
+		background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255,
+		.2)), color-stop(.5, transparent), to(transparent));
+	}
+</style>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box clearfix">
+			<header class="main-box-header clearfix">
+				<!-- Breadcumbs -->
+				<div class="row">
+					<div class="col-md-6">
+						<ul id="breadcrumbs-two">
+							<li><a style="cursor: pointer;">
+									<i class="fa fa-home"></i>
+									Tableau de bord</a></li>
+							
+							<li><a class="current" style="cursor: pointer;">
+									<i class="fa fa-files-o"></i>
+									Gestion des Artisans</a></li>
+						
+						</ul>
+					</div>
+					<div class="col-md-6">
+						<div class="pull-right">
+							<button type="button" style="font-size: 12px;" id="btn_add_newUser" class="btn btn-success" onclick="location.href='/auth/artisan/add';">
+								<i class="fa fa-plus-circle"></i>
+								Nouveau Artisan
+							</button>
+						
+						</div>
+					</div>
+				</div>
+			</header>
+			<div class="main-box-body clearfix">
+				<div class="col-md-12">
+			<?php if ( $_SESSION['flash'] ): ?>
+							<div class="alert alert-success ">
+				  <?= $_SESSION['flash'];
+				  $_SESSION['flash'] = null; ?>
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+			<?php endif; ?>
+					<table id="table-artisan" class="table table-hover artisan-list">
+						<thead>
+						<tr>
+							<th>ID</th>
+							<th>NOM</th>
+							<th>PRENOM</th>
+							<th>RAISON SOCIAL</th>
+							<th>ACTIVITE</th>
+							<th>DEPARTEMENT</th>
+							<th>EMAIL</th>
+							<th style="width: 100px">ACTION</th>
+						</tr>
+						</thead>
+						<tbody>
+			<?php
+			
+			foreach ( $this->artisans as $artisan ):?>
+							
+							<tr>
+								<td>
+					<?= $artisan->id_artisan; ?>
+								</td>
+								<td>
+					<?= $artisan->nom_artisan; ?>
+								</td>
+								<td>
+					<?= $artisan->prenom_artisan; ?>
+								</td>
+								<td>
+					<?= $artisan->raison_sociale ? $artisan->raison_sociale : 'N/A'; ?>
+								</td>
+								<td>
+					<?= count( $artisan->activites ) ? $artisan->activites[0]->libelle : 'N/A'; ?>
+								</td>
+								<td>
+					<?= count( $artisan->departements ) ? $artisan->departements[0]->nom_departement : 'N/A'; ?>
+								</td>
+								<td>
+					<?= $artisan->email_artisan; ?>
+								</td>
+								<td style="text-align: center;"><a href="/auth/artisan/edit/id/<?= $artisan->id_artisan ?>" class="table-link" id="btn-edit-artisan-<?= $artisan->id_artisan; ?>" style="cursor: pointer;">
+										<span class="fa-stack" title="Editer">
+											<i class="fa fa-square fa-stack-2x"></i>
+											<i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+										</span>
+									
+									</a>
+								
+								</td>
+							</tr>
+			<?php endforeach; ?>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	
+	$(function () {
+		
+		
+		
+		// DataTable setup
+		$('#table-artisan').dataTable({
+			'info': false,
+			'oLanguage': {
+				sProcessing: '<i style="font-size:50px;color:#6A6E9B" class="fa fa-spinner fa-spin"></i> Chargement en cours ...',
+				sSearchPlaceholder: "Nom, Prénom, Activité, Département..."
+				
+			},
+			"jQueryUI": true,
+			'sDom': 'lTfr<"clearfix">tip',
+			'oTableTools': {
+				'aButtons': []
+			},
+			
+			"order": [[0, "desc"]],
+			"paging": false,
+			"ordering": true,
+			"processing": true,
+			"searching": true
+		});
+	});
+</script>

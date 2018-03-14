@@ -1,0 +1,113 @@
+<style>
+	#error-notif {
+		color: red:
+		display: none;
+	}
+	
+	.form-group .help-block {
+		display: none;
+	}
+	
+	.form-group.has-error .help-block {
+		display: block;
+	}
+	
+	.autocomplete-suggestion {
+		padding: 4px 8px;
+		cursor: pointer;
+		border-bottom: 1px solid #CCC;
+		-webkit-transition: background-color .4s;
+		-moz-transition: background-color .4s;
+		-ms-transition: background-color .4s;
+		-o-transition: background-color .4s;
+		transition: background-color .4s;
+	}
+	
+	.autocomplete-suggestion:nth-child(odd) {
+		background-color: #EEE;
+	}
+	
+	.autocomplete-suggestion:hover {
+		background-color: #DDD;
+	}
+	
+	.autocomplete-suggestion small {
+		display: block;
+		font-size: 12px;
+	}
+</style>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="main-box clearfix">
+			<header style="min-height: 0 !important;" class="main-box-header clearfix">
+				<!-- Breadcumbs -->
+				<div class="row">
+					<div class="col-md-12">
+						<ul id="breadcrumbs-two">
+							<li>
+								<a href="/<?= Zend_Registry::get( 'Zend_Locale' )->getLanguage(); ?>/fo/Job/dashboard">
+									<i class="fa fa-home"></i>
+									Tableau de bord</a></li>
+							<li><a class="current" style="cursor: pointer;">
+									<i class="fa fa-files-o"></i>
+									Export des achats</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- end breadcumbs -->
+			</header>
+			<div class="main-box-body clearfix">
+				<form action="/auth/index/export" method="POST" class="must-validate" novalidate enctype="multipart/form-data">
+					
+					<div class="panel-group accordion" id="qualification-form">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a class="accordion-toggle" data-toggle="collapse" data-parent="#qualification-form" href="#client-info-collapse">
+										<i class="fa fa-file-text-o"></i>
+										Informations de l'artisan</a>
+								</h4>
+							</div>
+							<div id="client-info-collapse" class="panel-collapse collapse in">
+								<div class="panel-body row">
+									<div class="col-md-12">
+										<div class="col-md-4">
+											<?= $this->form->form_index->artisans; ?>
+										</div>
+										<div class="col-md-4">
+											<?= $this->form->form_index->mois; ?>
+										</div>
+										<div class="col-md-4">
+											<?= $this->form->form_index->annee; ?>
+										</div>
+									</div>
+									
+									
+									
+									
+									
+									
+									
+								</div>
+							</div>
+						</div>
+						
+						<div class="row" style="margin-top: 15px">
+							<div class="col-md-12">
+								<div class="pull-right">
+									<span style="display: none; margin-right: 5px;" id="error-notif" class="text-danger"> Une erreur s'est produite, veuillez verifier les champs en rouge</span>
+									<button class="btn btn-info" type="submit">
+										<i class="fa fa-save"></i>
+										Exporter
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

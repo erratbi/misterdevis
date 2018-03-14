@@ -1,0 +1,350 @@
+<link href="<?= $this->baseUrl( 'resources_fo_ehcg/css/jquery.autocomplete.css' ); ?>" rel="stylesheet" type="text/css">
+<style>
+	#error-notif {
+		color: red:
+		display: none;
+	}
+	
+	.form-group .help-block {
+		display: none;
+	}
+	
+	.form-group.has-error .help-block {
+		display: block;
+	}
+	
+	.autocomplete-suggestion {
+		padding: 4px 8px;
+		cursor: pointer;
+		border-bottom: 1px solid #CCC;
+		-webkit-transition: background-color .4s;
+		-moz-transition: background-color .4s;
+		-ms-transition: background-color .4s;
+		-o-transition: background-color .4s;
+		transition: background-color .4s;
+	}
+	
+	.autocomplete-suggestion:nth-child(odd) {
+		background-color: #EEE;
+	}
+	
+	.autocomplete-suggestion:hover {
+		background-color: #DDD;
+	}
+	
+	.autocomplete-suggestion small {
+		display: block;
+		font-size: 12px;
+	}
+</style>
+<script type="text/javascript" src="<?= $this->baseUrl( 'resources_fo_ehcg/js/jquery.autocomplete.min.js' ); ?>"></script>
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="main-box clearfix">
+			<header style="min-height: 0 !important;" class="main-box-header clearfix">
+				<!-- Breadcumbs -->
+				<div class="row">
+					<div class="col-md-12">
+						<ul id="breadcrumbs-two">
+							<li>
+								<a href="/<?= Zend_Registry::get( 'Zend_Locale' )->getLanguage(); ?>/fo/Job/dashboard">
+									<i class="fa fa-home"></i>
+									Tableau de bord</a></li>
+							<li><a class="current" style="cursor: pointer;">
+									<i class="fa fa-files-o"></i>
+									Qualification Visiophone</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- end breadcumbs -->
+			</header>
+			<div class="main-box-body clearfix">
+				<form action="/auth/visiophone/edit/id/<?= $this->id; ?>" method="POST" class="must-validate" novalidate enctype="multipart/form-data">
+					
+					<div class="panel-group accordion" id="qualification-form">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a class="accordion-toggle" data-toggle="collapse" data-parent="#qualification-form" href="#client-info-collapse">
+										<i class="fa fa-file-text-o"></i>
+										Informations du client</a>
+								</h4>
+							</div>
+							<div id="client-info-collapse" class="panel-collapse collapse in">
+								<div class="panel-body row">
+									<div class="col-md-12">
+										<div class="col-md-6">
+											<?= $this->form->form_particulier->civilite; ?>
+										</div>
+										<div class="col-md-6">
+											<?= $this->form->form_demande->titre_demande; ?>
+										</div>
+									</div>
+									
+									<div class="col-md-12">
+										
+										<div class="col-md-6">
+											<?= $this->form->form_particulier->nom_particulier; ?>
+										</div>
+										<div class="col-md-6">
+											<?= $this->form->form_particulier->prenom_particulier; ?>
+										</div>
+									</div>
+									
+									<div class="col-md-12">
+										<div class="col-md-6">
+											<?= $this->form->form_particulier->telephone_portable; ?>
+										
+										</div>
+										<div class="col-md-6">
+											<?= $this->form->form_particulier->telephone_fixe; ?>
+										</div>
+									</div>
+									
+									<div class="col-md-12">
+										<div class="col-md-6">
+											<?= $this->form->form_particulier->email; ?>
+										
+										</div>
+										<div class="col-md-6">
+											<?= $this->form->form_demande->delai_souhaite; ?>
+										</div>
+									</div>
+									
+									<div class="col-md-12">
+										<div class="col-md-6">
+											<?= $this->form->form_demande->description; ?>
+										
+										</div>
+										<div class="col-md-6">
+											<?= $this->form->form_particulier->horaireRDV; ?>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a class="accordion-toggle" data-toggle="collapse" data-parent="#qualification-form" href="#address-info-collapse">
+										<i class="fa fa-file-text-o"></i>
+										Adresse du chantier</a>
+								</h4>
+							</div>
+							<div id="address-info-collapse" class="panel-collapse collapse in">
+								<div class="panel-body">
+									<div class="panel panel-default row">
+										<div class="col-md-12">
+											<div class="col-md-6">
+												<?= $this->form->form_chantier->adresse; ?>
+											</div>
+											<div class="col-md-6">
+												<?= $this->form->form_chantier->adresse2; ?>
+											</div>
+										</div>
+										
+										<div class="col-md-12">
+											<div class="col-md-6">
+												<?= $this->form->form_chantier->code_postal ?>
+											</div>
+											<div class="col-md-6">
+												<?= $this->form->form_chantier->ville ?>
+												<?= $this->form->form_chantier->id_zone ?>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a class="accordion-toggle" data-toggle="collapse" data-parent="#qualification-form" href="#qualif-info-collapse">
+										<i class="fa fa-file-text-o"></i>
+										Qualification</a>
+								</h4>
+							</div>
+							<div id="qualif-info-collapse" class="panel-collapse collapse in">
+								<div class="panel-body">
+									<div class="col-md-6">
+										<?= $this->form->form_demande->type_demandeur; ?>
+										<?= $this->form->form_demande->type_batiment; ?>
+										<?= $this->form->form_demande->type_travaux; ?>
+										<?= $this->form->form_demande->budget_approximatif; ?>
+										<?= $this->form->form_demande->indication_complementaire; ?>
+									</div>
+									<div class="col-md-6">
+										<?= $this->form->form_demande->type_propriete; ?>
+										<?= $this->form->form_demande->prestation_souhaite; ?>
+										<?= $this->form->form_demande->objectif_demande; ?>
+										<?= $this->form->form_demande->financement_projet; ?>
+										<?= $this->form->form_demande->qualification; ?>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a class="accordion-toggle" data-toggle="collapse" data-parent="#qualification-form" href="#online-info-collapse">
+										<i class="fa fa-file-text-o"></i>
+										Mise en Ligne</a>
+								</h4>
+							</div>
+							<div id="online-info-collapse" class="panel-collapse collapse in">
+								<div class="panel-body">
+									<div class="col-md-6">
+					  <?= $this->form->form_demande->prix_mise_en_ligne; ?>
+					  <?= $this->form->form_demande->prix_promo; ?>
+									</div>
+									<div class="col-md-6">
+					  <?= $this->form->form_demande->publier_en_ligne; ?>
+										<div id="audio-drop-zone" class="form-group">
+											<div class="file-input <?= $this->form->form_demande->audio->getValue() ? 'hidden' : ''; ?>">
+						  <?= $this->form->form_demande->audio_file; ?>
+						  <?= $this->form->form_demande->audio; ?>
+											</div>
+											<div class="progress hidden">
+												<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style=""></div>
+											</div>
+						<?php if ( strlen( trim( $this->form->form_demande->audio->getValue() ) ) ): ?>
+													<div id="file-done" class="clearfix alert alert-success">
+														<a class="pull-left" href="<?= $this->qualification->id_demande->audio ? $this->qualification->id_demande->getAudioUrl() : '#'; ?>" target="_blank">
+															<span><?= $this->qualification->id_demande->titre_demande ? basename(
+									  $this->qualification->id_demande->audio
+								  ) : 'Fichier importé'; ?></span></a>
+														<a role="button" class="cancel pull-right">
+															<i class="fa fa-close"></i>
+														</a>
+													</div>
+						<?php endif; ?>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="row" style="margin-top: 15px">
+							<div class="col-md-12">
+								<div class="pull-right">
+									<span style="display: none; margin-right: 5px;" id="error-notif" class="text-danger"> Une erreur s'est produite, veuillez verifier les champs en rouge</span>
+									<button class="btn btn-info" title="Sauvegarder les modifications" id="btn-save-edit-client" type="submit">
+										<i class="fa fa-save"></i>
+										Enregistrer
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function () {
+		var code_postal = $('#Chantier-code_postal');
+		var ville = $('#Chantier-ville');
+		var id_zone = $('#Chantier-id_zone');
+		
+		if (code_postal.hasClass('has-error')) {
+			code_postal.next('.help-block').html('Ce code postal n\'est pas valid');
+			code_postal.parents('.form-group').addClass('has-error');
+			code_postal.focus();
+		}
+		
+		
+		code_postal.autoComplete({
+			minChars: 1,
+			delay: 10,
+			source: function (term, response) {
+				$.getJSON('/auth/index/cities/', {q: term}, function (data) {
+					response(data);
+				});
+			},
+			renderItem: function (item) {
+				console.log(item);
+				return '<div class="autocomplete-suggestion" data-id="' + item.id_zone + '" data-code="' + item.code + '"  data-ville="' + item.ville + '">' + item.ville + '<small>Code postal: ' + item.code +
+					'</small></div>';
+			},
+			onSelect: function (e, term, item) {
+				code_postal.val(item.data('code'));
+				code_postal.parents('.form-group').removeClass('has-error');
+				ville.val(item.data('ville'));
+				id_zone.val(item.data('id'))
+			}
+		});
+		
+		
+		ville.autoComplete({
+			minChars: 1,
+			delay: 10,
+			source: function (term, response) {
+				$.getJSON('/auth/index/cities/', {q: term}, function (data) {
+					response(data);
+				});
+			},
+			renderItem: function (item) {
+				return '<div class="autocomplete-suggestion" data-id="' + item.id_zone + '" data-code="' + item.code + '"  data-ville="' + item.ville + '">' + item.ville + '<small>Code postal: ' + item.code + '</small></div>';
+			},
+			onSelect: function (e, term, item) {
+				ville.val(item.data('ville'));
+				ville.parents('.form-group').removeClass('has-error');
+				code_postal.val(item.data('code'));
+				id_zone.val(item.data('id'))
+			}
+		});
+		
+		
+		$('form input').on('keydown keypress', function (e) {
+			var code = e.keyCode || e.which;
+			if (code === 13) return false;
+		});
+		
+		$('.must-validate').submit(function () {
+			var isValid = true;
+			$(this).find('[required]').each(function () {
+				
+				if (!$(this).val() || $(this).val().trim().length === 0) {
+					$(this).data('dirty', true);
+					$(this).parents('.form-group').addClass('has-error');
+					$(this).parents('.form-group').find('.help-block').show();
+					$(this).focus();
+					isValid = false;
+				} else {
+					$(this).parents('.form-group').removeClass('has-error');
+					$(this).parents('.form-group').find('.help-block').hide();
+				}
+			});
+			
+			if (!isValid) $('#error-notif').show();
+			else $('#error-notif').hide();
+			return isValid;
+		});
+		
+		$('[required]').on('blur', function () {
+			$(this).data('dirty', true);
+			if (!$(this).val() || $(this).val().trim().length === 0) {
+				$(this).parents('.form-group').addClass('has-error');
+				$(this).parents('.form-group').find('.help-block').show();
+			} else {
+				$(this).parents('.form-group').removeClass('has-error');
+				$(this).parents('.form-group').find('.help-block').hide();
+			}
+		}).on('keyup', function () {
+			if (!$(this).data('dirty')) return;
+			if (!$(this).val() || $(this).val().trim().length === 0) {
+				$(this).parents('.form-group').addClass('has-error');
+				$(this).parents('.form-group').find('.help-block').show();
+			} else {
+				$(this).parents('.form-group').removeClass('has-error');
+				$(this).parents('.form-group').find('.help-block').hide();
+			}
+		});
+	});
+</script>

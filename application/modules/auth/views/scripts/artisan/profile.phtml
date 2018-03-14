@@ -1,0 +1,206 @@
+<style>
+	#error-notif {
+		color: red:
+		display: none;
+	}
+
+	.form-group .help-block {
+		display: none;
+	}
+
+	.form-group.has-error .help-block {
+		display: block;
+	}
+</style>
+<div class="row">
+	<div class="col-md-12">
+		<div class="main-box clearfix">
+			<header style="min-height: 0 !important;" class="main-box-header clearfix">
+				<!-- Breadcumbs -->
+				<div class="row">
+					<div class="col-md-12">
+						<ul id="breadcrumbs-two">
+							<li>
+								<a href="/auth/dashboard">
+									<i class="fa fa-home"></i>
+									Tableau de bord</a></li>
+							<li><a class="current" style="cursor: pointer;">
+									<i class="fa fa-files-o"></i>
+									Profile utilisateur</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- end breadcumbs -->
+			</header>
+			<div class="main-box-body clearfix">
+				<form action="/auth/user/profile/id/<?=$this->user->id_user;?>" method="POST" class="must-validate" id="form_add_user" novalidate>
+					
+					<div class="panel-group accordion" id="user-form">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a class="accordion-toggle" data-toggle="collapse" data-parent="#user-form" href="#user-info-collapse">
+										<i class="fa fa-file-text-o"></i>
+										Informations de l'utilisateur </a>
+								</h4>
+							</div>
+							<div id="user-info-collapse" class="panel-collapse collapse in">
+								<div class="panel-body row">
+									<div class="col-md-6">
+										<div id="form-group-LASTNAME_USER" class="form-group">
+											<label for="lastname_user">NOM UTILISATEUR *:</label> <input
+												type="text" name="LASTNAME_USER"
+												placeholder="Nom utilisateur" id="LASTNAME_USER"
+												class="form-control" value="<?=$this->user->lastname_user;?>"> <span id="help-block-LASTNAME_USER"
+												style="display: none;" class="help-block"><i
+												class="icon-remove-sign"></i> Le nom utilisateur est obligatoire</span>
+										</div>
+										<div id="form-group-FIRSTNAME_USER" class="form-group">
+											<label for="firstname_user">PRENOM UTILISATEUR  *:</label> <input
+												type="text" name="FIRSTNAME_USER"
+												placeholder="Prénom utilisateur" id="FIRSTNAME_USER"
+												class="form-control" value="<?=$this->user->firstname_user;?>"><span id="help-block-FIRSTNAME_USER"
+												style="display: none;" class="help-block"><i
+												class="icon-remove-sign"></i> Le Nom est obligatoire</span> 
+										</div>
+							
+										<div id="form-group-EMAIL_USER" class="form-group">
+											<label for="email_user">E-MAIL  *:</label> <input
+												type="text" name="EMAIL_USER"
+												placeholder="E-Mail" id="EMAIL_USER"
+												class="form-control" value="<?=$this->user->email_user;?>"><span id="help-block-EMAIL_USER"
+												style="display: none;" class="help-block"><i
+												class="icon-remove-sign"></i> L'E-MAIL est obligatoire</span> 
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a class="accordion-toggle" data-toggle="collapse" data-parent="#user-form" href="#credentials-info-collapse">
+										<i class="fa fa-file-text-o"></i>
+										Credentials</a>
+								</h4>
+							</div>
+							<div id="credentials-info-collapse" class="panel-collapse collapse in">
+								<div class="panel-body row">
+									<div class="col-md-6">
+										<div class="panel panel-default">
+										
+											<div id="form-group-LOGIN_USER" class="form-group">
+												<label for="ville">IDENTIFIANT *
+													 :</label> <input type="text"
+													id="LOGIN_USER"
+													placeholder="Identifiant"
+													class="form-control" name="LOGIN_USER" value="<?=$this->user->login_user;?>"><span id="help-block-LOGIN_USER"
+													style="display: none;" class="help-block"><i
+													class="icon-remove-sign"></i> L'Identifiant  est obligatoire</span> 
+											</div>
+											
+											<div id="form-group-PASSWORD_USER" class="form-group">
+												<label for="password">NOUVEAU MOT DE PASSE *
+													 :</label> <input type="password"
+													id="PASSWORD_USER"
+													placeholder="Mot de passe"
+													class="form-control" name="PASSWORD_USER" >
+											</div>
+											
+											<div id="form-group-PASSWORDCONFIRM" class="form-group">
+												<label for="password">CONFIRMER LE MOT DE PASSE *
+													 :</label> <input type="password"
+													id="PASSWORDCONFIRM"
+													placeholder="Confirmer le Mot de passe"
+													class="form-control" name="PASSWORDCONFIRM" ><span id="help-block-PASSWORDCONFIRM"
+													style="display: none;" class="help-block"><i
+													class="icon-remove-sign"></i> Les mots de passe ne sont pas identiques</span> 
+											</div>
+							
+							
+						
+										</div>
+									</div>
+							
+								</div>
+							</div>
+						</div>
+						
+
+
+						
+						<div class="row" style="margin-top: 15px">
+							<div class="col-md-12">
+								<div class="pull-right">
+									<span style="display: none; margin-right: 5px;" id="error-notif" class="text-danger"> Une erreur s'est produite, veuillez verifier les champs en rouge</span>
+									<button class="btn btn-info" type="submit">
+										<i class="fa fa-save"></i>
+										Enregistrer
+									</button>
+								</div>
+							
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var nbclic=0;
+$(document).ready(function() {
+	
+		
+		$("#form_add_user").submit(function(event){
+			var validate=true;
+			//LA VALIDATION
+			$('#form-group-LASTNAME_USER').removeClass( "has-error" );
+			$('#form-group-FIRSTNAME_USER').removeClass( "has-error" );
+			$('#form-group-EMAIL_USER').removeClass( "has-error" );
+			$('#form-group-PASSWORD_USER').removeClass( "has-error" );
+			$('#form-group-LOGIN_USER').removeClass( "has-error" );
+		
+			if($('#LASTNAME_USER').val()==''){
+				$('#form-group-LASTNAME_USER').addClass( "has-error" );
+				$('#help-block-LASTNAME_USER').show();
+				validate=false;
+			}
+			
+			if($('#FIRSTNAME_USER').val()==''){
+				$('#form-group-FIRSTNAME_USER').addClass( "has-error" );
+				$('#help-block-FIRSTNAME_USER').show();
+				validate=false;
+			}
+			
+			if($('#EMAIL_USER').val()==''){
+				$('#form-group-EMAIL_USER').addClass( "has-error" );
+				$('#help-block-EMAIL_USER').show();
+				validate=false;
+			}
+			
+			if($('#PASSWORD_USER').val()!='' && $('#PASSWORD_USER').val()!=$('#PASSWORDCONFIRM').val()){
+				$('#form-group-PASSWORDCONFIRM').addClass( "has-error" );
+				$('#help-block-PASSWORDCONFIRM').show();
+				validate=false;
+			}
+			
+			if($('#LOGIN_USER').val()==''){
+				$('#form-group-LOGIN_USER').addClass( "has-error" );
+				$('#help-block-LOGIN_USER').show();
+				validate=false;
+			}
+			
+			if(!validate){
+				validate=true;
+				return false;
+			}
+
+		});
+		
+	//
+});
+</script>

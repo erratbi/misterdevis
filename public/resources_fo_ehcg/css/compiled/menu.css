@@ -1,0 +1,269 @@
+#cssmenu, #cssmenu ul, #cssmenu ul li, #cssmenu ul li a {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	list-style: none;
+	line-height: 1;
+	display: block;
+	position: relative;
+	margin-right: 7px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#cssmenu:after, #cssmenu>ul:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+#cssmenu {
+	width: 103%;
+	border-bottom: 3px solid #1B9CDC;
+	line-height: 1;
+}
+
+#cssmenu ul {
+	background: #E7EBEE;
+}
+
+#cssmenu>ul>li {
+	float: left;
+}
+
+#cssmenu.align-center>ul {
+	font-size: 0;
+	text-align: center;
+}
+
+#cssmenu.align-center>ul>li {
+	display: inline-block;
+	float: none;
+}
+
+#cssmenu.align-right>ul>li {
+	float: right;
+}
+
+#cssmenu.align-right>ul>li>a {
+	margin-right: 0;
+	margin-left: -4px;
+}
+
+#cssmenu>ul>li>a {
+	padding: 17px 25px 12px 25px;
+	font-size: 11px;
+	text-decoration: none;
+	color: #1b9cdc;
+	border-top-left-radius: 8px;
+	/*box-shadow: 1px 1px 12px #1b9cdc;*/
+	border-top-right-radius: 8px;
+	border-top: 1px solid #1b9cdc;
+	border-left: 1px solid #1b9cdc;
+	border-right: 1px solid #1b9cdc;
+	background-color: #fff;
+	-webkit-transition: all .2s ease;
+	-moz-transition: all .2s ease;
+	-ms-transition: all .2s ease;
+	-o-transition: all .2s ease;
+	transition: all .2s ease;
+	margin-right: -4px;
+	cursor:pointer;
+}
+
+#cssmenu>ul>li>a:hover {
+	color: #fff;
+	border-top-right-radius: 8px;
+	border-top-left-radius: 8px;
+	border-top: 1px solid 1b9cdc;
+	border-left: 1px solid 1b9cdc;
+	border-right: 1px solid 1b9cdc;
+	font-weight: bold;
+	font-size: 12px;
+	background-color: #1b9cdc;
+	padding: 17px 25px 12px 25px;
+	cursor:pointer;
+}
+
+#cssmenu>ul>li.active>a {
+	padding: 17px 25px 12px 25px;
+	color: #fff;
+	border-top-right-radius: 8px;
+	border-top-left-radius: 8px;
+	border-top: 1px solid 1b9cdc;
+	border-left: 1px solid 1b9cdc;
+	border-right: 1px solid 1b9cdc;
+	font-size: 12px;
+	font-weight: bold;
+	background-color: #1b9cdc;
+	cursor:pointer;
+}
+
+/* #cssmenu > ul > li.active > a,
+#cssmenu > ul > li:hover > a,
+#cssmenu > ul > li > a:hover {
+  color: #1b9cdc;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top: 1px solid;
+  border-left: 1px solid;
+  border-right: 1px solid;
+  background-color: #fff;
+} */
+/*
+#cssmenu > ul > li > a:after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  width: 100%;
+  height: 120%;
+  
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  content: "";
+  -webkit-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+  -webkit-transform: perspective(5px) rotateX(2deg);
+  -webkit-transform-origin: bottom;
+  -moz-transform: perspective(5px) rotateX(2deg);
+  -moz-transform-origin: bottom;
+  transform: perspective(5px) rotateX(2deg);
+  transform-origin: bottom;
+}
+#cssmenu > ul > li.active > a:after,
+#cssmenu > ul > li:hover > a:after,
+#cssmenu > ul > li > a:hover:after {
+  background: #1b9cdc;
+}
+*/
+#cssmenu ul li:hover, #cssmenu ul li.active {
+	margin-right: 7px;
+	border-top-left-radius: 8px;
+	box-shadow: 1px 1px 12px #1b9cdc;
+	border-top-right-radius: 8px;
+	background: #fff;
+}
+
+/*style pour le menu Question,aide,Contact*/
+#cssquestion, #cssquestion ul, #cssquestion ul li, #cssquestion ul li a
+	{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	list-style: none;
+	line-height: 1;
+	display: block;
+	position: relative;
+}
+
+#cssquestion:after, #cssquestion>ul:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+#cssquestion {
+	width: 120%;
+	border-bottom: 3px solid #1B9CDC;
+	line-height: 1;
+}
+
+#cssquestion>ul>li {
+	float: right;
+}
+
+#cssquestion.align-center>ul {
+	font-size: 0;
+	text-align: center;
+}
+
+#cssquestion.align-center>ul>li {
+	display: inline-block;
+	float: none;
+}
+
+#cssquestion.align-right>ul>li {
+	float: right;
+}
+
+#cssquestion.align-right>ul>li>a {
+	margin-right: 0;
+	margin-left: -4px;
+}
+
+#cssquestion>ul>li>a {
+	z-index: 2;
+	padding: 18px 11px 12px 2px;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #1B9CDC;
+	margin-right: -4px;
+}
+
+#cssquestion>ul>li.active>a, #cssquestion>ul>li:hover>a, #cssquestion>ul>li>a:hover
+	{
+	color: #6A6E9B;
+}
+/*fin style menu Question,aide,Contact*/
+
+/*style icons*/
+#cssicons, #cssicons ul, #cssicons ul li, #cssicons ul li a {
+	margin: 0;
+	padding: 1.5px;
+	border: 0;
+	list-style: none;
+	line-height: 1;
+	display: block;
+	position: relative;
+}
+
+#cssicons:after, #cssicons>ul:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+#cssicons {
+	width: auto;
+	border-bottom: 3px solid #1B9CDC;
+	line-height: 1;
+}
+
+#cssicons>ul>li {
+	float: right;
+}
+
+#cssicons.align-center>ul {
+	font-size: 0;
+	text-align: center;
+}
+
+#cssicons.align-center>ul>li {
+	display: inline-block;
+	float: none;
+}
+
+#cssicons.align-right>ul>li {
+	float: right;
+}
+
+#cssicons.align-right>ul>li>a {
+	margin-right: 0;
+	margin-left: -4px;
+}
+
+/*fin style icons*/

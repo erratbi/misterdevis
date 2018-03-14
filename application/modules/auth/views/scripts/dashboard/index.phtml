@@ -1,0 +1,173 @@
+<!-- Breadcumbs -->
+<div class="row">
+	<div class="col-md-12">
+		<ul id="breadcrumbs-two">
+			<li><a href="/auth/dashboard/index">
+					<i class="fa fa-home"></i>
+					Tableau de bord</a></li>
+		</ul>
+	</div>
+</div><!-- end breadcumbs -->
+<div class="row">
+	<div class="col-lg-12">
+		<div class="alert alert-info fade in">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<i class="fa fa-info-circle fa-fw fa-lg"></i>
+			<strong>Bienvenue sur Mister Devis : votre outil des projets travaux !</strong>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="main-box clearfix project-box green-box">
+			<div class="main-box-body clearfix">
+				<div class="project-box-header red-bg">
+					<div class="name">
+						<a href="#"> <b id="total-all-vendu"><?= $this->countvendu; ?></b> Vente(s) des demandes de devis </a>
+					</div>
+				</div>
+				<div class="project-box-footer clearfix">
+					<a href="/auth/dashboard/carte">
+						<span class="value"><b><?= $this->countvenducarte; ?></b></span>
+						<span class="label"><b>Par Carte Bancaire</b></span>
+					</a> <a href="/auth/dashboard/virementvalide">
+						<span class="value"><b><?= $this->countvenduvirementvalide; ?></b></span>
+						<span class="label"><b>Virements validé</b></span>
+					</a> <a href="/auth/dashboard/virement">
+						<span class="value"><b><?= $this->countvenduvirementencours; ?></b></span>
+						<span class="label"><b>Virements en cours</b></span>
+					</a>
+					<a href="/auth/dashboard/chequevalide">
+						<span class="value"><b><?= $this->countvenduchequevalide; ?></b></span>
+						<span class="label"><b>Chèques validé</b></span>
+					</a> <a href="/auth/dashboard/cheque">
+						<span class="value"><b><?= $this->countvenduchequeencours; ?></b></span>
+						<span class="label"><b>Chèques en cours</b></span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<div class="main-box clearfix project-box green-box">
+			<div class="main-box-body clearfix">
+				<div class="project-box-header red-bg">
+					<div class="name">
+						<a href="#"> <b id="total-all-vendu"><?= $this->countpacks; ?></b> Vente(s) des packs de crédits </a>
+					</div>
+				</div>
+				<div class="project-box-footer clearfix">
+					<a href="/auth/dashboard/packscart">
+						<span class="value"><b><?= $this->countpackscart; ?></b></span>
+						<span class="label"><b>Par Carte Bancaire</b></span>
+					</a> <a href="/auth/dashboard/packsvirementvalide">
+						<span class="value"><b><?= $this->countpacksvirementvalide; ?></b></span>
+						<span class="label"><b>Virements validé</b></span>
+					</a> <a href="/auth/dashboard/packsvirement">
+						<span class="value"><b><?= $this->countpacksvirementnonvalide; ?></b></span>
+						<span class="label"><b>Virements en cours</b></span>
+					</a><a href="/auth/dashboard/packscheque">
+						<span class="value"><b><?= $this->countpackschequenonvalide; ?></b></span>
+						<span class="label"><b>Chèques en cours</b></span>
+					</a>
+					<a href="/auth/dashboard/packschequevalide">
+						<span class="value"><b><?= $this->countpackschequevalide; ?></b></span>
+						<span class="label"><b>Chèques validé</b></span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	
+	<div class="col-lg-3 col-sm-6 col-xs-12">
+		<div class="main-box infographic-box colored emerald-bg">
+				<i class="fa fa-files-o"></i>
+				<span class="headline">Piscine</span> <span class="value" id="total-all-dossiers"><?= $this->countpiscine; ?></span>
+		</div>
+	</div>
+	
+	<div class="col-lg-3 col-sm-6 col-xs-12">
+		<div class="main-box infographic-box colored red-bg">
+			<i class="fa fa-user"></i>
+			<span class="headline">Chauffage</span> <span class="value" id="total-all-customers"><?= $this->countchauffage; ?></span>
+		</div>
+	</div>
+	<div class="col-lg-3 col-sm-6 col-xs-12">
+		<div class="main-box infographic-box colored blue-bg">
+			<i class="fa fa-user"></i>
+			<span class="headline">Climatisation</span> <span class="value" id="total-all-contacts"><?= $this->countclimatisation; ?></span>
+		</div>
+	</div>
+	<div class="col-lg-3 col-sm-6 col-xs-12">
+		<div class="main-box infographic-box colored purple-bg">
+			<i class="fa fa-comments-o"></i>
+			<span class="headline">Fenêtre</span>
+			<span class="value" id="total-all-comentsJob"><?= $this->countfenetre; ?></span>
+		</div>
+	</div>
+</div>
+<div class="row">
+	
+	<div class="col-lg-3 col-sm-6 col-xs-12">
+		<div class="main-box infographic-box">
+			
+				<i class="fa fa-thumbs-o-up emerald-bg"></i>
+				<span class="headline">devis qualifié</span>
+				<span class="value"><span class="timer" data-from="30" data-to="658" data-speed="800" data-refresh-interval="30" id="total-all-batVal"><?= $this->countdevisqualifie; ?></span>
+				</span>
+			
+		</div>
+	</div>
+	<div class="col-lg-3 col-sm-6 col-xs-12">
+		<div class="main-box infographic-box">
+			
+				<i class="fa fa-thumbs-down red-bg"></i>
+				<span class="headline">devis non qualifié</span>
+				<span class="value"><span class="timer" data-from="120" data-to="2562" data-speed="1000" data-refresh-interval="50" id="total-all-batRet"><?= $this->countdevisnonqualifie; ?></span>
+				</span>
+			
+		</div>
+	</div>
+	<div class="col-lg-3 col-sm-6 col-xs-12">
+		<div class="main-box infographic-box">
+			
+				<i class="fa fa-check blue-bg"></i>
+				<span class="headline">devis NRP</span>
+				<span class="value"><span class="timer" data-from="83" data-to="8400" data-speed="900" data-refresh-interval="60" id="total-all-batTrt"><?= $this->countdevisnrp; ?></span>
+				</span>
+			
+		</div>
+	</div>
+	<div class="col-lg-3 col-sm-6 col-xs-12">
+		<div class="main-box infographic-box">
+			
+				<i class="fa fa-share-square yellow-bg"></i>
+				<span class="headline">devis tardé</span>
+				<span class="value"><span class="timer" data-from="539" data-to="12526" data-speed="1100" id="total-all-batEnv"><?= $this->countdevistard; ?></span>
+				</span>
+			
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<?php foreach ($this->listusers as $user) : ?>
+		
+	
+	<div class="col-lg-3 col-sm-6 col-xs-12">
+		<div class="main-box infographic-box">
+				<i class="fa fa-thumbs-o-up emerald-bg"></i>
+				<span class="headline">Qualification(s) : <?= $user['firstname_user'];?></span>
+				<span class="value"><span class="timer" data-from="30" data-to="658" data-speed="800" data-refresh-interval="30" id="total-all-batVal"><?= $user['countuser']; ?></span>
+				</span>
+			
+		</div>
+	</div>
+
+<?php endforeach ; ?>
+	
+</div>

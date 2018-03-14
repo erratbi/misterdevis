@@ -1,0 +1,10 @@
+<?php
+
+switch ( $this->type ) {
+	case 'chauffage-eau-solaire':
+		echo "{$this->form->type_diffusion_chaleur}";
+		break;
+	case 'chauffage-eau-thermodynamique':
+		echo "{$this->form->type_energie}";
+		break;
+}

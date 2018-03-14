@@ -1,0 +1,84 @@
+<div id="page">
+	<table cellpadding="5">
+		<tr>
+			<td style="width: 70%">&nbsp;</td>
+			<td style="text-align:right; font-size: 38px; border: 1px solid #777; width: 30%">
+				<strong>  <?= "{$this->artisan->prenom_artisan} {$this->artisan->nom_artisan}"; ?></strong>
+				
+				<br>
+				<?= $this->artisan->raison_sociale; ?>
+				<br>
+				<?= $this->artisan->adresse; ?>
+				<br>
+				<?= $this->artisan->ville; ?>
+				<br>
+				<?= $this->artisan->code_postal; ?>
+			</td>
+		</tr>
+	</table>
+	<br> <br>
+	<table>
+		<tr>
+			<td style="width: 25%">
+				Date : <?= date( 'd/m/Y' ); ?>
+				Facture N° : <?= str_pad( "{$this->demande->id_demande}-{$this->artisan->id_artisan}", '8', '0', 0 ); ?>
+			</td>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+	<br> <br> <br> <br>
+	<table class="table3" cellpadding="7">
+		<tr>
+			<th style="width: 60%;">Libellé</th>
+			<th style="width: 15%;">Prix HT</th>
+			<th style="width: 10%;">Qté</th>
+			<th style="width: 15%;">Total TTC</th>
+		</tr>
+		<tr>
+			<td style="text-align: left">
+				<?= $this->demande->getRef(); ?>
+				<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+			</td>
+			<td><?= $this->demande->getTotalHT(); ?> &euro;</td>
+			<td>1</td>
+			<td><?= $this->demande->getTotalHT(); ?> &euro;</td>
+		</tr>
+		<tr>
+			<td rowspan="3" style="text-align: left">
+				<br>Date de livraison : <?= date( 'd/m/Y' ); ?>
+				<br>Mode de paiement : <?= $this->acheter->mode_paiement; ?>
+			</td>
+			<td colspan="2">Total HT</td>
+			<td>
+				<?= $this->demande->getTotalHT(); ?> &euro;
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">TVA 20%</td>
+			<td>
+				<?= $this->demande->getTVA(); ?> &euro;
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				Total TTC
+			</td>
+			<td>
+				<?= $this->demande->getTotal(); ?> &euro;
+			</td>
+		</tr>
+	</table>
+	
+	<br> <br> <br> <br> <br>
+</div>
+
+<style type="text/css">
+	.table3 th, .table3 td {
+		text-align: center;
+		border: 1px solid #777;
+	}
+	
+	.table3 td {
+		text-align: left !important;
+	}
+</style>

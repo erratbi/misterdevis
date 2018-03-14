@@ -1,0 +1,7 @@
+cd C:\xampp\htdocs\sample\Meunier-Traiteur\library
+
+/********* Generate Entities ********/
+php doctrine.php  orm:convert-mapping --from-database annotation ../application/modules/auth/models
+
+/********* Generate Repositories ********/
+php doctrinwe.php orm:generate-repositories ../application/modules/auth/models

@@ -1,0 +1,54 @@
+<form id="<?=$this->form->getAttrib('id')?>" action="<?=$this->escape($this->form->getAction())?>">
+
+		<div class="standard-tabs same-height">
+        <!-- class="standard-tabs same-height tabs-active tabs-animated tab-opened" -->
+			<ul class="tabs">
+				<li class="active"><a href="#tab-prod1">Utilisateur</a></li>
+			</ul>
+            
+			<div class="tabs-content"><!--span class="tabs-back with-left-arrow top-bevel-on-light dark-text-bevel">Back</span-->
+		
+				<div id="tab-prod1"> <!-- class="tab-active" -->
+					<div class="button-height inline-block">
+		            	
+		                     <div class="modal-half-form">
+		                        <ul class="inputs">
+		                            <li style="text-transform:uppercase;"><span class="icon-user"></span><?= $this->form->lastnameuser->renderViewHelper(); ?></li>
+		                            <li><span class="icon-user"></span><?= $this->form->firstnameuser->renderViewHelper(); ?></li>
+		                            <li><span class="icon-mail"></span><?= $this->form->emailuser->renderViewHelper(); ?></li>
+                                    <li><span class="icon-mobile"></span><?= $this->form->mobileuser->renderViewHelper(); ?></li>
+		                            <li><span class="icon-phone"></span><?= $this->form->phoneuser->renderViewHelper(); ?></li>
+		                            <li><span class="icon-star"></span><?= $this->form->pwduser->renderViewHelper(); ?></li>
+		                            <li><span class="icon-star"></span><?= $this->form->pwduser2->renderViewHelper(); ?></li>
+		                            <!--li><span class="icon-printer"></span><input type="text" name="customerFax" value="" class="input-unstyled" placeholder="Ligne fax" autocomplete="off" style="width:90%;"></li-->
+		                        </ul>
+		                	</div>
+		                     <div class="modal-half-form">
+		                        <ul class="inputs">
+		                            <li><span class="icon-home"></span><?= $this->form->address1user->renderViewHelper(); ?></li>
+		                            <li><span class="icon-home"></span><?= $this->form->zipuser->renderViewHelper(); ?></li>
+		                            <li><span class="icon-home"></span><?= $this->form->cityuser->renderViewHelper(); ?></li>
+		                            <li><span class="icon-home"></span><?= $this->form->countryuser->renderViewHelper(); ?></li>
+                                    <li><span class="icon-search"></span><?= $this->form->idgroup->renderViewHelper(); ?><?= $this->form->namegroupAutocp->renderViewHelper(); ?></li>
+		                        </ul>
+                                <span class="button-group"><?php
+									$selectOptions = $this->form->statususer->getMultiOptions();
+									foreach($selectOptions as $value => $label):
+										$isChecked = $this->form->statususer->getValue() == $value;
+										?><label for="statususer-<?= $value; ?>" class="button blue-active tiny<?= ($isChecked) ? ' active' : ''; ?>">
+                                            <input type="radio" name="statususer" id="statususer-<?= $value; ?>" value="<?= $value; ?>"<?= ($isChecked) ? ' checked="checked"' : ''; ?>>
+										<?= $label ?>
+										</label><?php                            
+									endforeach;
+	                		?></span>
+		                    </div>
+		                
+		           </div>                                 
+				</div>
+				
+			</div>
+			
+			<?= (isset($this->form->iduser)) ? $this->form->iduser->renderViewHelper() : ''; ?>
+		</div>
+
+</form>

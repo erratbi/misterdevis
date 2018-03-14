@@ -1,0 +1,53 @@
+<section id="login-block">
+	<div class="span4 offset4">
+		<div class="signin">
+			<h1 class="left-align-text"><b style="color: #c7242c;">Mister Devis</b></h1>
+			<?php if ( isset( $_SESSION['flash'] ) ): ?>
+			<div class="alert alert-success"></div><?= $_SESSION['flash']; ?></div>
+		<?php unset( $_SESSION['flash'] ); ?>
+		<?php endif; ?>
+		<div class="block-content"></div>
+		<form id="login-form" name="login-form" action="<?php echo $this->escape( $this->form->getAction() ); ?>" class="signin-wrapper" method="<?php echo $this->escape( $this->form->getMethod() ); ?>">
+			<h5 class="left-align-text"><b>Se connecter</b> <img src="<?= $this->baseUrl( '/resources_fo_login/img/sep.png' ); ?>">
+			</h5>
+			<div class="content">
+				<div class="form-horizontal no-margin well">
+					<div class="control-group">
+						<div class="control-label">
+							<b><?php echo $this->form->login->renderLabel(); ?></b>
+						</div>
+						<div class="controls">
+							<?php echo $this->form->login->renderViewHelper(); ?>
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="control-label">
+							<b><?php echo $this->form->password->renderLabel(); ?></b>
+						</div>
+						<div class="controls">
+							<?php echo $this->form->password->renderViewHelper(); ?>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="actions">
+				<?php echo $this->form->connexion->renderViewHelper(); ?>
+				<span class="checkbox-wrapper"></span>
+				<div class="clearfix"></div>
+			</div>
+			<div class="actions">
+				<span class="checkbox-wrapper">
+					<a href="/auth/login/forgotpassword/" class="pull-right"><?php //echo $this->translate('Forgotten password');?>Mot de passe oublié ?</a>
+				</span>
+				<div class="clearfix"></div>
+			</div>
+		</form>
+		
+		<p align="right">© Mister Devis
+			<script type="text/javascript">
+				document.write(new Date().getFullYear());
+			</script>
+		</p>
+	</div>
+	</div>
+</section>

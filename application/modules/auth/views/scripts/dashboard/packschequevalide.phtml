@@ -1,0 +1,106 @@
+<!--data table-->
+<script src="<?= $this->baseUrl( 'resources_fo_ehcg/js/jquery.dataTables.js' ); ?>"></script>
+<script src="<?= $this->baseUrl( 'resources_fo_ehcg/js/dataTables.tableTools.js' ); ?>"></script>
+<script src="<?= $this->baseUrl( 'resources_fo_ehcg/js/jquery.dataTables.bootstrap.js' ); ?>"></script>
+
+<!-- Data table-->
+<link rel="stylesheet" type="text/css" href="<?= $this->baseUrl( 'resources_fo_ehcg/css/libs/dataTables.fixedHeader.css' ); ?>">
+<link rel="stylesheet" type="text/css" href="<?= $this->baseUrl( 'resources_fo_ehcg/css/libs/dataTables.tableTools.css' ); ?>">
+<style>
+	::-webkit-scrollbar-track {
+		-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+		background-color: #6A6E9B;
+	}
+	
+	::-webkit-scrollbar {
+		width: 10px;
+		background-color: #6A6E9B;
+	}
+	
+	::-webkit-scrollbar-thumb {
+		background-color: #1B9CDC;
+		background-image: -webkit-gradient(linear, 0 0, 0 100%, color-stop(.5, rgba(255, 255, 255,
+		.2)), color-stop(.5, transparent), to(transparent));
+	}
+</style>
+<div class="row">
+	<div class="col-lg-12">
+		<div class="main-box clearfix">
+			<header class="main-box-header clearfix">
+				<!-- Breadcumbs -->
+				<div class="row">
+					<div class="col-md-6">
+						<ul id="breadcrumbs-two">
+							<li><a style="cursor: pointer;">
+									<i class="fa fa-home"></i>
+									Tableau de bord</a></li>
+							
+							<li><a class="current" style="cursor: pointer;">
+									<i class="fa fa-files-o"></i>
+									Chèques Packs Validés</a></li>
+						
+						</ul>
+					</div>
+				</div>
+			</header>
+			<div class="main-box-body clearfix">
+				<div class="col-md-12">
+					<div class="table-responsive">
+						<?php if ( $_SESSION['flash'] ): ?>
+							<div class="alert alert-success ">
+								<?= $_SESSION['flash'];
+								$_SESSION['flash'] = null; ?>
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+						<?php endif; ?>
+						<table id="table-artisan" class="table table-hover artisan-list">
+							<thead>
+							<tr>
+								<th>ID</th>
+								<th>NOM</th>
+								<th>PRENOM</th>
+								<th>RAISON SOCIAL</th>
+								<th>E-MAIL</th>
+								<th>PACK ACHETE</th>
+								<th>Montant TTC</th>
+							</tr>
+							</thead>
+							<tbody>
+							<?php
+							
+							foreach ( $this->crediter as $achat ):?>
+								
+								<tr>
+									<td>
+										<?= $achat->id; ?>
+									</td>
+									<td>
+										<?= $achat->artisan->nom_artisan; ?>
+									</td>
+									<td>
+										<?= $achat->artisan->prenom_artisan; ?>
+									</td>
+									<td>
+										<?= $achat->artisan->raison_sociale ? $achat->artisan->raison_sociale : 'N/A'; ?>
+									</td>
+									<td>
+										<?= $achat->artisan->email_artisan; ?>
+									</td>
+									<td>
+										<?= $achat->pack->libelle; ?>
+									</td>
+									<td>
+										<?= round((float)($achat->pack->prix_pack) * 1.2,2); ?>&nbsp;&euro;
+									</td>
+								</tr>
+							<?php endforeach; ?>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

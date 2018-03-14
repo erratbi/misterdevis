@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<title>Mister Devis</title>
+<meta charset="utf-8">
+
+<!-- Global stylesheets -->
+<link
+	href="<?=$this->baseUrl('resources_fo_login/icomoon/style.css');?>"
+	rel="stylesheet" type="text/css">
+<link href="<?=$this->baseUrl('resources_fo_login/css/login.css');?>"
+	rel="stylesheet" type="text/css">
+<link href="<?=$this->baseUrl('resources_fo_login/css/common.css');?>"
+	rel="stylesheet" type="text/css">
+
+
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/x-icon"
+	href="<?=$this->baseUrl('resources_fo_ehcg/img/favicon-ehcg.ico');?>">
+
+
+
+<!-- Generic libs -->
+<script type="text/javascript"
+	src="<?=$this->baseUrl('resources_bo/js/html5.js');?>"></script>
+<!-- this has to be loaded before anything else -->
+<script type="text/javascript"
+	src="<?=$this->baseUrl('resources_bo/js/jquery-1.4.2.min.js');?>"></script>
+<!-- login libs -->
+<script type="text/javascript"
+	src="<?=$this->baseUrl('resources_bo/js/old-browsers.js');?>"></script>
+<!-- remove if you do not need older browsers detection -->
+
+<!-- Template core functions -->
+<script type="text/javascript"
+	src="<?=$this->baseUrl('resources_bo/js/common.js');?>"></script>
+<script type="text/javascript"
+	src="<?=$this->baseUrl('resources_bo/js/standard.js');?>"></script>
+<!--[if lte IE 8]><script type="text/javascript" src="<?=$this->baseUrl('resources_bo/js/standard.ie.js');?>"></script><![endif]-->
+<script type="text/javascript"
+	src="<?=$this->baseUrl('resources_bo/js/jquery.tip.js');?>"></script>
+
+
+
+
+
+</head>
+
+<!-- the 'special-page' class is only an identifier for scripts -->
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="logo">
+				<img style="margin-top: 8px;"
+					src="<?=$this->baseUrl('resources_fo_login/img/company_logo.jpg');?>"
+					alt="logo ehcg">
+			</div>
+		</div>
+		<div class="row">
+			<br>
+			<br>
+			<br>
+		</div>
+		<div class="row-fluid">
+			
+		<?= $this->layout()->content; ?>
+      </div>
+	</div>
+</body>
+</html>

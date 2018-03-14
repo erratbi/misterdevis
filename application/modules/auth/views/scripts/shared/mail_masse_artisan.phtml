@@ -1,0 +1,49 @@
+<div style="width: 650px; margin: 10px auto;">
+      <div style="text-align: center; padding: 10px;"><img src="http://www.webonline2018.com/resources_fo_ehcg/img/company_logo_1.jpg" /></div>
+      <h1 style="background-color:#0184c2;padding: 50px;color:#fff;text-align: center; font-size: 20px">Demande de devis - <?=$this->demande->getId_activite()->getLibelle(); ?> sur <?=ucfirst(strtolower($this->demande->getId_chantier()->getZone()->getVille())); ?>  (<?=$this->demande->getId_chantier()->getZone()->getCode();?>)</h1>
+      <p>Bonjour,</p>
+      <p style="margin-bottom: : 15px">Nous venons de recevoir et de qualifier un nouveau projet sur votre secteur d'activité :</p>
+      
+            <ul>
+                  <li>Chantier disponible à : <?=ucfirst(strtolower($this->demande->getId_chantier()->getZone()->getVille())); ?> </li>
+                  <li>Catégorie du chantier : <?=$this->demande->getId_activite()->getLibelle(); ?> </li>
+                  <li>Référence             : <?=$this->demande->getRef();?> </li>
+                  <li>Date du projet        : <?= date( 'd/m/Y', strtotime( $this->demande->getDate_publication() ) );?> </li>
+                  <li>Détail du projet      : <?=$this->demande->getDescription();?>      </li>
+            </ul>
+      
+      <p style="margin-top: 15px">
+            <a href="https://www.mister-devis.com/inscription-pro/" target="_blank">S'inscrire pour découvrir ce Projet</a>
+      </p>
+      <p>Je suis à votre disposition pour vous apporter plus d'information</p>
+      <p>Cordialement</p>		
+	<p style="margin-top: 25px">
+		<strong>André</strong><br>
+            <span>
+                  MISTER DEVIS PRO<br>
+                  478 Avenue de l'Industrie<br>
+                  66000<br>
+                  PERPIGNAN<br>
+                  FRANCE
+            </span>
+            <br>
+		<span>
+			<a href="mailto:andre@mister-devis.com">andre@mister-devis.com</a><br> 09 88 77 27 00 </span>    <br><br>
+		<img src="http://www.webonline2018.com/resources_fo_ehcg/img/company_logo_1.jpg" style="width: 80px" />
+	</p>
+</div>
+
+<style type="text/css">
+
+
+ul {
+    padding: 5px;
+
+}
+
+ul li {
+    padding: 8px;
+    margin-left: 35px;
+}
+
+</style>

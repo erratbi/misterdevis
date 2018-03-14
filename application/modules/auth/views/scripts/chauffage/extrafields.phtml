@@ -1,0 +1,21 @@
+<?php
+
+switch ( $this->type ) {
+	case 'chauffage-a-bois':
+		echo "{$this->form->type_installation}{$this->form->conduite_fumee}";
+		break;
+	case 'chauffage-electrique':
+	case 'chauffage-fiol':
+	case 'chauffage-a-gaz':
+		echo "{$this->form->type_radiateur}";
+		break;
+	case 'chauffage-eau-solaire':
+		echo "{$this->form->type_diffusion_chaleur}";
+		break;
+	case 'chauffage-eau-thermodynamique':
+		echo "{$this->form->type_energie}";
+		break;
+	case 'pompe-a-chaleur':
+		echo "{$this->form->type_pompe_chaleur}";
+		break;
+}

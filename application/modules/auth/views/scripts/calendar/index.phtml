@@ -1,0 +1,137 @@
+
+<link rel="stylesheet" href="<?= $this->baseUrl('resources_fo_ehcg/css/style.css?v=2'); ?>">
+<link rel="stylesheet" href="<?= $this->baseUrl('resources_fo_ehcg/css/calendars.css?v=2'); ?>">
+<link rel="stylesheet" href="<?= $this->baseUrl('resources_fo_ehcg/css/colors.css?v=2'); ?>">
+<link rel="stylesheet" href="<?= $this->baseUrl('resources_fo_ehcg/css/form.css?v=2'); ?>">
+<script src="<?= $this->baseUrl('resources_fo_ehcg/js/init.js'); ?>"></script>
+
+
+<script language="javascript" type="text/javascript">
+$(document).ready(function(){
+	
+	var winwidth = $(window).width();
+	if(winwidth <= 480){
+		$('.calendar-padding span.mobile-size').removeClass('compact');
+		$('.calendar-padding span.mobile-size').addClass('tiny');
+	}
+	
+	var uri = '<?= $this->url($this->calHeader[1]['url']); ?>';
+	if($("#statsBlock").length>0){
+		refreshStats(uri) ;
+	}
+	
+});
+</script>
+<?php
+	$currency = new Zend_Currency("EUR");
+	
+?>
+    <div class="calendar-padding">
+        
+        <table class="calendar fluid responsive-table-on">
+			<div class="calendar-nav">
+                <div class="button-group float-right compact">
+	                <div class="button caldarnav silver-gradient">
+	                	<a href="<?= $this->url($this->calHeader[0]['url']); ?>" style="font-size:12px;">◄</a>
+	                </div>
+                	<div class="button" style="margin: 0px 0;">
+                		<input style="width:70px;font-size:12px;text-transform:uppercase;color:#607890;cursor: pointer;font-weight:bold" id="calendarMonthPicker" class="input-unstyled" value="<?= $this->calHeader[1]['text']; ?>"/>
+                	</div>
+	                <div class=" button caldarnav silver-gradient hidden">
+	                	<a class="hidden refreshClandar" id="refreshClandar" href="<?= $this->url($this->calHeader[1]['url']); ?>" style="font-size:12px;text-transform:uppercase;"><?= $this->calHeader[1]['text']; ?></a>
+	                </div>
+                    <div class="button caldarnav silver-gradient">
+                        <a href="<?= $this->url($this->calHeader[2]['url']); ?>" style="font-size:12px;">►</a>
+                    </div>
+                </div>
+            </div>
+            <thead>
+                <tr>
+                	<?php foreach ($this->calWeekdays as $arr) : ?>
+               		<th scope="col" style="width:14%;"><?php echo $arr['dayShortStr']; ?></th>
+                	<?php endforeach; ?>
+                </tr>
+            </thead>
+            <tbody>
+            	<?php foreach ($this->calMonthDays as $weekNum => $weekArr) : ?>
+	            <tr>
+	                <?php foreach ($weekArr as $dayArr) : ?>
+	                <td class="<?php echo $dayArr['class']; ?>">
+						<?php if(isset($dayArr['num'])) : ?>
+	                    <span class="cal-day"><a class="createdevis" title="Créer un devis" id="createDevis" href="<?= $this->baseUrl('/auth/estimate/devis') ?>" rel="$dayArr['timestamp']" view="showCreateDevis"><?php echo $dayArr['num']; ?></a></span>
+	                    	<?php
+	                    	if(isset($dayArr['estimate'])) :
+	                    		foreach($dayArr['estimate'] as $value):
+	                    			$classDisabled = date('Ymd') > date('Ymd', $dayArr['timestamp']) || (date('Ymd') == date('Ymd', $dayArr['timestamp']) && $dayArr['num'] < date('j')) ? ' disabled' : '';
+									$classIndent = date('Ymd') > date('Ymd', $dayArr['timestamp']) || (date('Ymd') == date('Ymd', $dayArr['timestamp']) && $dayArr['num'] < date('j')) ? '' : ' tablet-indent-text';
+				                    ?>	
+                                    <div class="only-mobile estimateType<?= $value['css']; ?> <?= $value['css']; ?>-gradient stayBlock gotoestimate full-width small-margin-bottom cursor-pointer button" style="margin-bottom:16px;">
+				                        <span class="count <?= $value['css']; ?>-gradient" style="width:100%;left:-1px;"><?= $value['convivesnumberestimate']; ?></span>
+                                        <span class="hidden idEst" ><?= $value['idestimate']; ?></span>
+                                    </div>
+                                    
+                                    <button rel="tooltip-<?= $value['idestimate']; ?>" class="tablet-paysage-font screen-calendar hide-on-mobile estimateType<?= $value['css']; ?> gotoestimate button <?= $value['css']; ?>-gradient full-width small-margin-bottom cursor-pointer line-height-normal<?= $classDisabled ?>" style="display:list-item;list-style:none;">
+                                        <span class="count <?= $value['css']; ?>-gradient estimate-customers"><?= $value['convivesnumberestimate']; ?></span>
+                                        <?php if($value['modeestimate'] == 'retrait') : ?>
+                                        <span class="count blue-gradient estimate-lab">lab</span>
+                                        <?php endif; ?>
+                                        <div class="<?=$classIndent?> indent-10"><?= $value['titleestimate']; ?></div>
+                                        <span class="hidden idEst" ><?= $value['idestimate']; ?></span>
+                                    </button>
+									<?php
+	                        	endforeach;
+	                        endif;
+						endif;
+						?>
+	                </td>
+	                <?php endforeach; ?>
+	            </tr>
+	            <?php endforeach; ?>
+            </tbody>
+        </table>
+    	<?php if(Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('statistics'),'view')): ?>
+        <div id="statsBlock" class="columns" style="margin-bottom:0; margin-top:0;">
+            <div align="left" class="twelve-columns" style="margin-bottom:0; padding-top:0px;">&nbsp;</div>
+            <div class="three-columns six-columns-mobile grey-plain mid-margin-bottom ui-corner-all" title="Mensuel / Exercice">
+                <div class="tiny-padding">Chiffre d'affaire</div>
+                <div class="anthracite tiny-padding-right" align="right"><strong> <span id="camonth"></span>€ / <span id="cayear"></span>€</strong></div>
+                <div class="tiny-padding-right tiny-padding-bottom" align="right"> <span id="cattlfacture"></span> affaires / <span id="cattlfactureexercice"></span> affaires</div>
+            </div>
+            <div class="three-columns six-columns-mobile grey-plain mid-margin-bottom ui-corner-all" title="Mensuel / Exercice">
+                <div class="tiny-padding">Perçu</div>
+                <div class="green tiny-padding-right" align="right"><strong> <span id="perceivedmonth"></span>€ / <span id="perceivedyear"></span>€</strong></div>
+                <div class="tiny-padding-right tiny-padding-bottom" align="right"><span id="perceivedacompte"></span> acomptes(<span id="perceivedfacture"></span>) / <span id="perceivedacompteexercice"></span> acomptes(<span id="perceivedfactureexercice"></span>)</div>
+            </div>
+            <div class="three-columns six-columns-mobile grey-plain mid-margin-bottom ui-corner-all" title="Mensuel / Exercice">
+                <div class="tiny-padding">A Soldé</div>
+                <div class="red tiny-padding-right" align="right"><strong><span id="latemonth"></span>€ / <span id="lateyear"></span>€</strong></div>
+                <div class="tiny-padding-right tiny-padding-bottom" align="right"><span id="latefacture"></span> affaires / <span id="latefactureexercice"></span> affaires</div>
+            </div>
+            <div class="three-columns six-columns-mobile grey-plain mid-margin-bottom ui-corner-all" title="Mensuel / Exercice">
+                <div class="tiny-padding">Non finalisé</div>
+                <div class="anthracite tiny-padding-right" align="right"><strong><span id="notfinalizedmonth"></span>€ / <span id="notfinalizedyear"></span>€</strong></div>
+                <div class="tiny-padding-right tiny-padding-bottom" align="right"><span id="notfinalizedfacture"></span> devis / <span id="notfinalizedfactureexercice"></span> devis</div>
+            </div>
+            <div class="three-columns six-columns-mobile grey-plain mid-margin-bottom ui-corner-all" title="Mensuel">
+                <div class="tiny-padding">Soldé</div>
+                <div class="anthracite tiny-padding-right" align="right"><strong><span id="soldettlprice"></span>€</strong></div>
+                <div class="tiny-padding-right tiny-padding-bottom" align="right"><span id="soldettlfacture"></span> factures</div>
+            </div>
+            <div class="three-columns six-columns-mobile grey-plain mid-margin-bottom ui-corner-all" title="Mensuel">
+                <div class="tiny-padding">Confirmé</div>
+                <div class="green tiny-padding-right" align="right"><strong><span id="confirmettlprice"></span>€</strong></div>
+                <div class="tiny-padding-right tiny-padding-bottom" align="right"><span id="confirmettldevis"></span> devis</div>
+            </div>
+            <div class="three-columns six-columns-mobile grey-plain mid-margin-bottom ui-corner-all" title="Mensuel" style="background:#f2f2f2;">
+                <div class="tiny-padding">En attente</div>
+                <div class="orange tiny-padding-right" align="right"><strong><span id="waitingttlprice"></span>€</strong></div>
+                <div class="tiny-padding-right tiny-padding-bottom" align="right"><span id="waitingttldevis"></span> devis</div>
+            </div>
+            <div class="three-columns six-columns-mobile grey-plain mid-margin-bottom ui-corner-all" title="Mensuel">
+                <div class="tiny-padding">Annulé</div>
+                <div class="blue tiny-padding-right" align="right"><strong><span id="cancelttlprice"></span>€</strong></div>
+                <div class="tiny-padding-right tiny-padding-bottom" align="right"><span id="cancelttldevis"></span> devis</div>
+            </div>
+        </div>
+    </div>
+    <?php endif ?>

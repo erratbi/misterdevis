@@ -1,0 +1,10 @@
+<?php
+
+switch ( $this->type ) {
+	case 'volet-roulant':
+		echo "{$this->form->fermeture}";
+		break;
+	case 'volet-battant':
+		echo "{$this->form->volets_motorises}{$this->form->materiaux_volets}";
+		break;
+}

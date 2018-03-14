@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<?php echo $this->headTitle(); ?>
+	<meta charset="utf-8">
+	
+	<!-- Global stylesheets -->
+	<link href="<?= $this->baseUrl( 'resources_fo_ehcg/css/bootstrap/bootstrap.min.css' ); ?>" rel="stylesheet" type="text/css">
+	<link href="<?= $this->baseUrl( 'resources_fo_ehcg/css/libs/font-awesome.css' ); ?>" rel="stylesheet" type="text/css">
+	<link href="<?= $this->baseUrl( 'resources_fo_ehcg/css/libs/nanoscroller.css' ); ?>" rel="stylesheet" type="text/css">
+	<link href="<?= $this->baseUrl( 'resources_fo_ehcg/css/compiled/theme_styles.css' ); ?>" rel="stylesheet" type="text/css">
+	<link href="<?= $this->baseUrl( 'resources_fo_ehcg/css/libs/hopscotch.css' ); ?>" rel="stylesheet" type="text/css">
+	<link href="<?= $this->baseUrl( 'resources_fo_ehcg/css/admin-home.css' ); ?>" rel="stylesheet" type="text/css">
+	<link href="<?= $this->baseUrl( 'resources_fo_ehcg/css/jquery.dm-uploader.min.css' ); ?>" rel="stylesheet" type="text/css">
+	<!--  <link
+	href="<?= $this->baseUrl( 'resources_fo_ehcg/css/compiled/menu.css' ); ?>"
+	rel="stylesheet" type="text/css">-->
+	
+	<link href="<?= $this->baseUrl( 'resources_fo_ehcg/css/compiled/responsivemenu.css' ); ?>" rel="stylesheet" type="text/css">
+	<link href="<?= $this->baseUrl( 'resources_fo_ehcg/css/compiled/breadcumbs.css' ); ?>" rel="stylesheet" type="text/css">
+	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,600,700,300|Titillium+Web:200,300,400' rel='stylesheet' type='text/css'>
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="<?= $this->baseUrl( 'resources_fo_ehcg/img/favicon-ehcg.ico' ); ?>">
+	<!-- Generic libs -->
+	<!-- this has to be loaded before anything else -->
+	<script type="text/javascript" src="<?= $this->baseUrl( 'resources_fo_ehcg/js/jquery.js' ); ?>"></script>
+	<script type="text/javascript" src="<?= $this->baseUrl( 'resources_fo_ehcg/js/bootstrap.js' ); ?>"></script>
+	
+	
+	<!-- remove if you do not need older browsers detection -->
+	
+	<script type="text/javascript">
+		var $baseUrl = "<?php echo $this->baseUrl(); ?> ";
+	</script>
+
+
+</head>
+
+<body class="pace-done boxed-layout fixed-footer">
+<div id="theme-wrapper">
+	<?php //echo $this->render('header.phtml') ?>
+	<header class="navbar" id="header-navbar">
+		<div class="container">
+			<a style="cursor: pointer;" class="navbar-brand"> <img src="<?= $this->baseUrl( 'resources_fo_ehcg/img/company_logo_1.jpg' ); ?>" alt="TK_GROUP" /> </a>
+			<a style="padding: 10px 15px; float: left; cursor: pointer;"> <img src="" alt="" /> </a>
+			<div class="clearfix">
+				<!--
+<button class="navbar-toggle" data-target=".navbar-ex1-collapse" data-toggle="collapse" type="button">
+<span class="sr-only">Toggle navigation</span>
+<span class="fa fa-bars"></span>
+</button>-->
+				
+				<div class="nav-no-collapse pull-right" id="header-nav">
+					<ul class="nav navbar-nav pull-right" id="notification-box">
+						<!-- les notifications -->
+						
+						
+						<!-- fin des notifs -->
+						<li>&nbsp;&nbsp;</li>
+						<li class="dropdown profile-dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="hidden-xs">
+									Bonjour <?php echo unserialize( Zend_Auth::getInstance()->getIdentity() )->firstname_user . ' ' . unserialize( Zend_Auth::getInstance()->getIdentity() )->lastname_user ?></span>
+								<b class="caret"></b> </a>
+							<ul class="dropdown-menu" id="compte-box">
+				  <?php if ( unserialize( Zend_Auth::getInstance()->getIdentity() )->rank_user == 1 ): ?>
+										<li>
+											<a href="/auth/user">
+												<i class="fa fa-user"></i>
+												Gestion des utilisateurs</a>
+										</li>
+				  <?php endif; ?>
+								<li>
+									<a href="/auth/artisan">
+										<i class="fa fa-users"></i>
+										Gestion des artisans</a>
+								</li>
+								<li>
+									<a href="/auth/user/profile">
+										<i class="fa fa-user"></i>
+										Profil</a>
+								</li>
+
+								<li>
+									<a href="/auth/index/export">
+										<i class="fa fa-file-excel-o"></i>
+										Exporter les achats</a>
+								</li>
+								
+								<li>
+									<a href="/auth/logout">
+										<i class="fa fa-power-off"></i>
+										Se déconnecter</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</header>
+	<div id="sidebar">
+		<a class="toggle-sidebar">
+			<span></span>
+			<span></span>
+			<span></span>
+		</a>
+		<div class="admin-vcard">
+			<h1><?php echo unserialize( Zend_Auth::getInstance()->getIdentity() )->firstname_user . ' ' . unserialize( Zend_Auth::getInstance()->getIdentity() )->lastname_user ?></h1>
+			<h3><?= unserialize( Zend_Auth::getInstance()->getIdentity() )->rank_user == 1 ? 'Administrateur' : 'Moderateur'; ?></h3>
+			<a class="btn-logout btn btn-danger" href="/auth/logout">
+				<i class="fa fa-power-off"></i>
+				Se déconnecter</a>
+		</div>
+		<div id="sidebar-content">
+			<h2>Qualification</h2>
+			<div id="search-box">
+				<input type="text" placeholder="Rechercher..." class="form-control">
+				<i class="fa fa-search"></i>
+			</div>
+			<ul id="qualifications-list" style="max-height: 55vh; overflow-y: auto">
+				<li><a href="/auth/dashboard">Tableau de bord</a></li>
+				<li><a href="/auth/piscine">Qualification Piscine</a></li>
+				<li><a href="/auth/chauffage">Qualification Chauffage</a></li>
+				<li><a href="/auth/fenetre">Qualification Fenetre</a></li>
+				<li><a href="/auth/cuisine">Qualification Cuisine</a></li>
+				<li><a href="/auth/sallebain">Qualification Salle de Bain</a></li>
+				<li><a href="/auth/climatisation">Qualification Climatisation</a></li>
+				<li><a href="/auth/sauna">Qualification Sauna &amp; Hammam</a></li>
+				<li><a href="/auth/spa">Qualification Spa</a></li>
+				<li><a href="/auth/renovation">Qualification Renovation</a></li>
+				<li><a href="/auth/carrelage">Qualification Carrelage</a></li>
+				<li><a href="/auth/isolation">Qualification Isolation</a></li>
+				<li><a href="/auth/veranda">Qualification Véranda</a></li>
+				<li><a href="/auth/abri-piscine">Qualification Abri Piscine</a></li>
+				<li><a href="/auth/abri-jardin">Qualification Abri Jardin</a></li>
+				<li><a href="/auth/alarme-maison">Qualification Alarme Maison</a></li>
+				<li><a href="/auth/alarme-incendie">Qualification Alarme Incendie</a></li>
+				<li><a href="/auth/anticalcaire">Qualification Anti-Calcaire</a></li>
+				<li><a href="/auth/photovoltaique">Qualification Photovoltaique</a></li>
+				<li><a href="/auth/construction">Qualification Construction</a></li>
+				<li><a href="/auth/monte-escalier">Qualification Monte Escalier</a></li>
+				<li><a href="/auth/traitement-humidite">Qualification Traitement de l'Humidité</a></li>
+				<li><a href="/auth/traitement-nuisible">Qualification Traitement contre les Nuisibles</a></li>
+				<li><a href="/auth/etancheite">Qualification Etanchéité</a></li>
+				<li><a href="/auth/station-epuration">Qualification Micro station epuration</a></li>
+				<li><a href="/auth/facade">Qualification Façade</a></li>
+				<li><a href="/auth/volets">Qualification Volets</a></li>
+				<li><a href="/auth/charpente">Qualification Charpente</a></li>
+				<li><a href="/auth/porte-entree">Qualification Porte d'entrée</a></li>
+				<li><a href="/auth/porte-blindee">Qualification Porte Blindée</a></li>
+				<li><a href="/auth/porte-garage">Qualification Porte de Garage</a></li>
+				<li><a href="/auth/peinture">Qualification Peinture</a></li>
+				<li><a href="/auth/plombrie">Qualification Plomberie</a></li>
+				<li><a href="/auth/geothermie">Qualification Géothermie</a></li>
+				<li><a href="/auth/domotique">Qualification Domotique</a></li>
+				<li><a href="/auth/menuiserie">Qualification Menuiserie</a></li>
+				<li><a href="/auth/portail">Qualification Portail</a></li>
+				<li><a href="/auth/eolienne">Qualification Eolienne</a></li>
+				<li><a href="/auth/chauffe-eau">Qualification Chauffe Eau</a></li>
+				<li><a href="/auth/diagnostic">Qualification Diagnostic Immobilier</a></li>
+				<li><a href="/auth/traitement-charpente">Qualification Traitement Charpente</a></li>
+				<li><a href="/auth/visiophone">Qualification Visiophone</a></li>
+				<li><a href="/auth/interphone">Qualification Interphone</a></li>
+				<li><a href="/auth/parquet">Qualification Parquet</a></li>
+				<li><a href="/auth/chauffage-inertie">Qualification Chauffage à Inertie</a></li>
+				<li><a href="/auth/chauffage-piscine">Qualification Chauffage Piscine</a></li>
+				<li><a href="/auth/cloture">Qualification Clôture</a></li>
+				<li><a href="/auth/escalier">Qualification Escalier</a></li>
+				<li><a href="/auth/ramonage">Qualification Ramonage</a></li>
+				<li><a href="/auth/sol-plastique">Qualification Sol Plastique</a></li>
+				<li><a href="/auth/demenagement-entreprise">Qualification Déménagement Entreprise</a></li>
+				<li><a href="/auth/demenagement-famille">Qualification Déménagement Famille</a></li>
+				<li><a href="/auth/demenagement-internationnal">Qualification Déménagement Internationnal</a></li>
+				<li><a href="/auth/cloison-platre">Qualification Cloison &amp; Plâtre</a></li>
+				<li><a href="/auth/couverture-piscine">Qualification Couverture Piscine</a></li>
+				<li><a href="/auth/entretien-piscine">Qualification Entretien Piscine</a></li>
+				<li><a href="/auth/securite-piscine">Qualification Securité Piscine</a></li>
+				<li><a href="/auth/electricite">Qualification Électricité</a></li>
+				<li><a href="/auth/moquette">Qualification Moquette</a></li>
+				<li><a href="/auth/terrasse-piscine">Qualification Terrasse Piscine</a></li>
+				<li><a href="/auth/poele-granule">Qualification Poêle à Granulé</a></li>
+				<li><a href="/auth/terrassement">Qualification Terrassement</a></li>
+				<li><a href="/auth/jardin-parc">Qualification Entretien Jardins et Parcs Paysagiste</a></li>
+				<li><a href="/auth/jardin-parc">Qualification Entretien Jardins et Parcs Paysagiste</a></li>
+				<li><a href="/auth/architecte">Qualification Architecte</a></li>
+				<li><a href="/auth/nettoyage">Qualification Nettoyage</a></li>
+			</ul>
+			<h2>Gestion</h2>
+			<ul>
+				<li><a href="/auth/artisan">Gêrer les artisans</a></li>
+		  <?php if ( unserialize( Zend_Auth::getInstance()->getIdentity() )->rank_user == 1 ): ?>
+						<li>
+							<a href="/auth/user">Gérer des utilisateurs</a>
+						</li>
+		  <?php endif; ?>
+		</div>
+	</div>
+	<div id="sidebar-overlay" style="display: none"></div>
+	<div id="page-wrapper" class="container nav-small">
+		<div id="content-wrapper">
+			<!-- Menu responsive -->
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="main-box clearfix">
+						<header class="main-box-header clearfix" style="min-height: 0 !important;"></header>
+						<div class="main-box-body clearfix">
+							<div class="row">
+								<div class="col-md-12">
+									<ul class="egmenu">
+										
+										
+										<li><a href="/auth/dashboard" id="btnDSH">TABLEAU DE BORD</a></li>
+										<li><a href="/auth/piscine" id="btnPSC">Qualification Piscine</a></li>
+										<li><a href="/auth/chauffage" id="btnCHF">Qualification Chauffage</a></li>
+										<li><a href="/auth/fenetre" id="btnCHF">Qualification Fenetre</a></li>
+										<li><a href="/auth/cuisine" id="btnCUI">Qualification Cuisine</a></li>
+										<li><a href="/auth/sallebain" id="btnSDB">Qualification Salle de Bain</a></li>
+										<li><a href="/auth/climatisation" id="btnCLM">Qualification Climatisation</a></li>
+										<!--<li><a href="/auth/sauna" id="btnSAS">Qualification Sauna &amp; Hammam</a></li>-->
+										<li><a href="/auth/spa" id="btnSAS">Qualification Spa</a></li>
+									
+									
+									</ul>
+								</div>
+							</div>
+							
+							<div class="row">
+								<div class="col-md-9">
+								
+								</div>
+								
+								<div class="col-md-3">
+									
+									
+									<!--  <ul class="egmenu">
+							<li><a href="/<?= Zend_Registry::get( 'Zend_Locale' )->getLanguage(); ?>/fo/Page/question">QUESTION</a></li>
+							<li><a href="/<?= Zend_Registry::get( 'Zend_Locale' )->getLanguage(); ?>/fo/Page/help">AIDE</a></li>
+							<li><a href="/<?= Zend_Registry::get( 'Zend_Locale' )->getLanguage(); ?>/fo/Page/contact">CONTACT</a></li>
+						</ul>-->
+								</div>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Fin Menu responsive -->
+			
+			<!--fin menu-->
+			<!--file-->
+			<div class="row">
+				<div id="Content" class="col-lg-12">
+			<?= $this->layout()->content; ?>
+				
+				</div>
+			</div>
+			<footer id="footer-bar" class="row">
+				<center>
+					<div class="col-md-3">
+						<p>
+							<a href="#"><b class="quisommenous">QUI SOMMES-NOUS</b></a>
+						</p>
+					</div>
+					<div class="col-md-3">
+						<p>
+							<a href="#"><b class="contacternous">CONTACTEZ-NOUS</b></a>
+						</p>
+					</div>
+					<div class="col-md-3">
+						<p>
+							<a href="http://www.mister-devis.com" target="_blank"><b class="nosservice">Mister Devis </b></a>
+						</p>
+					</div>
+					<div class="col-md-3">
+						<p>
+							<a href="#"><b class="pratique">PRATIQUE</b></a>
+						</p>
+					</div>
+				</center>
+			</footer>
+		</div>
+	
+	</div>
+</div>
+<script src="<?= $this->baseUrl( 'resources_fo_ehcg/js/jquery.dm-uploader.min.js' ); ?>"></script>
+<script>
+	
+	
+	/* highlight matches text */
+	var highlight = function (string) {
+		$("#qualifications-list li.match a").each(function () {
+			var matchStart = $(this).text().toLowerCase().indexOf("" + string.toLowerCase() + "");
+			var matchEnd = matchStart + string.length - 1;
+			var beforeMatch = $(this).text().slice(0, matchStart);
+			var matchText = $(this).text().slice(matchStart, matchEnd + 1);
+			var afterMatch = $(this).text().slice(matchEnd + 1);
+			$(this).html(beforeMatch + "<strong>" + matchText + "</strong>" + afterMatch);
+		});
+	};
+	
+	
+	$(function () {
+		
+		var t = null;
+		
+		$('#sidebar .toggle-sidebar, #sidebar-overlay').on('click', function () {
+			clearTimeout(t);
+			$('#sidebar').toggleClass('open');
+			if (!$('#sidebar').hasClass('open')) {
+				t = setTimeout(function () {
+					$('#sidebar-overlay').fadeOut();
+				}, 400);
+			} else {
+				$('#sidebar-overlay').fadeIn();
+			}
+		});
+		
+		
+		$("#search-box input").on("keyup", function () {
+			if (this.value.length > 0) {
+				$("#qualifications-list li").removeClass("match").filter(function () {
+					var flag = false;
+					var parts = $('#search-box input').val().toLowerCase().split(/\s+/);
+					var that = this;
+					parts.forEach(function (part) {
+						console.log($(that).find('a').text().toLowerCase().indexOf(part), part, $(that).find('a').text());
+						if ($(that).find('a').text().toLowerCase().indexOf(part) != -1) flag = true;
+						
+					});
+					return flag;
+				}).addClass("match");
+				$("#qualifications-list").addClass('filtred');
+			}
+			
+			else {
+				$("#qualifications-list li").removeClass("match");
+				$("#qualifications-list").removeClass("filtred");
+			}
+		});
+		
+		
+		// Upload script
+		$("#audio-drop-zone").dmUploader({
+			url: '<?= $this->baseUrl( 'auth/api/upload-audio' ); ?>',
+			multiple: false,
+			maxFileSize: 200000000, // 200 Megs
+			allowedTypes: "audio/*",
+			extFilter: ['ogg', 'mp3', 'wav'],
+			onDragEnter: function () {
+				if ($('#file-done').length)
+					return false;
+				
+				this.addClass('active');
+			},
+			onDragLeave: function () {
+				this.removeClass('active');
+			},
+			onInit: function () {
+				this.find('input[type="text"]').val('');
+			},
+			onNewFile: function (id, file) {
+				var msg = $(this).find('.error-msg');
+				if (msg.length) {
+					msg.remove();
+				}
+				
+			},
+			onBeforeUpload: function (id) {
+				$(this).find('.file-input').addClass('hidden');
+				$(this).find('.progress').removeClass('hidden');
+			},
+			onUploadProgress: function (id, percent) {
+				$(this).find('.progress-bar').css({width: percent + '%'});
+			},
+			onUploadSuccess: function (id, data) {
+				var resp = JSON.parse(data);
+				$(this).find('.file-input').addClass('hidden');
+				$(this).find('.progress').addClass('hidden');
+				$(this).find('.progress-bar').width(0);
+				
+				this.find('input#Demande-audio').val(resp.filename);
+				var done = $('<div id="file-done" class="clearfix alert alert-success"><span class="pull-left">Fichier importé</span> <a role="button" class="cancel pull-right"><i class="fa fa-close"></i></a></div>')
+				$(this).append(done);
+			},
+			onUploadError: function (id, xhr, status, message, data) {
+				var resp = JSON.parse(xhr.responseText);
+				console.log(resp);
+				var msg = $(this).find('.error-msg');
+				if (!msg.length) {
+					var msg = $('<div class="error-msg alert alert-danger">' + resp.message + '</div>');
+					$(this).append(msg);
+				}
+				msg.html(resp.message);
+				$(this).find('.file-input').removeClass('hidden');
+				$(this).find('.progress').addClass('hidden');
+			},
+			onFallbackMode: function () {
+			},
+			onFileSizeError: function (file) {
+				var msg = $(this).find('.error-msg');
+				if (!msg.length) {
+					msg = $('<div class="error-msg alert alert-danger"></div>');
+					$(this).append(msg);
+				}
+				msg.html('Ce fichier est trop large');
+				
+			},
+			onFileTypeError: function (file) {
+				var msg = $(this).find('.error-msg');
+				if (!msg.length) {
+					msg = $('<div class="error-msg alert alert-danger"></div>');
+					$(this).append(msg);
+				}
+				msg.html('Ce type de fichier n\'est pas autorisé');
+				
+			},
+			onFileExtError: function (file) {
+				var msg = $(this).find('.error-msg');
+				if (!msg.length) {
+					msg = $('<div class="error-msg alert alert-danger"></div>');
+					$(this).append(msg);
+				}
+				msg.html('Ce type de fichier n\'est pas autorisé');
+				
+			}
+		});
+		
+		$(document).on('click', '#file-done .cancel', function () {
+			$('#file-done').remove();
+			$('#audio-drop-zone .file-input').removeClass('hidden');
+			$('#audio-drop-zone .progress').addClass('hidden');
+		});
+	});
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,549 @@
+<?php echo $this->doctype(); ?>
+<!--[if IEMobile 7]><html class="no-js iem7 oldie"><![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js ie7 oldie" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js ie8 oldie" lang="en"><![endif]-->
+<!--[if (IE 9)&!(IEMobile)]><html class="no-js ie9" lang="en"><![endif]-->
+<!--[if (gt IE 9)|(gt IEMobile 7)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+
+    <head>
+
+        <!--  Default Meta -->
+        <?php
+        echo $this->headMeta();
+        echo $this->headTitle();
+        ?>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <title>Gestion des devis</title>
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <!-- iOS web-app metas -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <!-- Microsoft clear type rendering -->
+        <meta http-equiv="cleartype" content="on">
+
+        <!-- For all browsers -->
+        <link rel="stylesheet" href="<?= $this->baseUrl('css/general.css?v=1'); ?>">
+        <link rel="stylesheet" href="<?= $this->baseUrl('css/reset.css?v=1'); ?>">
+        <link rel="stylesheet" href="<?= $this->baseUrl('css/style.css?v=2'); ?>">
+        <link rel="stylesheet" href="<?= $this->baseUrl('css/colors.css?v=2'); ?>">
+        <link rel="stylesheet" href="<?= $this->baseUrl('css/styles/modal.css?v=2'); ?>">
+        <link rel="stylesheet" media="print" href="<?= $this->baseUrl('css/print.css?v=1'); ?>">
+
+        <!-- For progressively larger displays -->
+        <link rel="stylesheet" media="only all and (min-width: 480px)" href="<?= $this->baseUrl('css/480.css?v=1'); ?>">
+        <link rel="stylesheet" media="only all and (min-width: 768px)" href="<?= $this->baseUrl('css/768.css?v=1'); ?>">
+        <link rel="stylesheet" media="only all and (min-width: 992px)" href="<?= $this->baseUrl('css/992.css?v=1') ?>;">
+        <link rel="stylesheet" media="only all and (min-width: 1200px)" href="<?= $this->baseUrl('css/1200.css?v=1'); ?>">
+
+        <!-- For Retina displays -->
+        <link rel="stylesheet" media="only all and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5)" href="<?= $this->baseUrl("css/2x.css?v=1"); ?>">
+
+        <!-- Webfonts -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+
+        <!-- Additional styles -->
+        <link rel="stylesheet" href="<?= $this->baseUrl("css/styles/form.css?v=2"); ?>">
+        <link rel="stylesheet" href="<?= $this->baseUrl("css/styles/switches.css?v=3"); ?>">
+        <link rel="stylesheet" href="<?= $this->baseUrl("css/styles/table.css?v=1"); ?>">
+        <link rel="stylesheet" href="<?= $this->baseUrl("js/libs/DataTables/jquery.dataTables.css?v=1"); ?>">
+        <link rel="stylesheet" href="<?= $this->baseUrl("css/styles/calendars.css?v=1"); ?>">
+        <link rel="stylesheet" href="<?= $this->baseUrl("css/styles/tooltip2.css?v=1"); ?>">
+        <link rel="stylesheet" href="<?= $this->baseUrl("js/libs/glDatePicker/developr.css?v=1"); ?>">
+        <link rel="stylesheet" href="<?= $this->baseUrl("js/libs/formValidator/developr.validationEngine.css?v=1"); ?>">
+
+        <!-- JavaScript at bottom except for Modernizr -->
+        <script src="<?= $this->baseUrl("js/libs/modernizr.custom.js"); ?>"></script>
+
+        <!-- For Modern Browsers -->
+        <link rel="shortcut icon" href=<?= $this->baseUrl("img/favicons/favicon.png") ?>>
+        <!-- For everything else -->
+        <link rel="shortcut icon" href=<?= $this->baseUrl("img/favicons/favicon.ico") ?>>
+        <!-- For retina screens -->
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?= $this->baseUrl("img/favicons/apple-touch-icon-retina.png") ?>">
+        <!-- For iPad 1-->
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?= $this->baseUrl("img/favicons/apple-touch-icon-ipad.png") ?>">
+        <!-- For iPhone 3G, iPod Touch and Android -->
+        <link rel="apple-touch-icon-precomposed" href="<?= $this->baseUrl("img/favicons/apple-touch-icon.png") ?>">
+
+        <!-- Startup image for web apps -->
+        <link rel="apple-touch-startup-image" href="<?= $this->baseUrl("img/splash/ipad-landscape.png") ?>" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+        <link rel="apple-touch-startup-image" href="<?= $this->baseUrl("img/splash/ipad-portrait.png") ?>" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+        <link rel="apple-touch-startup-image" href="<?= $this->baseUrl("img/splash/iphone.png") ?>" media="screen and (max-device-width: 320px)">
+        <link href="<?= $this->baseUrl('css/styles/jquery-ui-1.8.20.custom.css') ?>" rel="stylesheet" type="text/css" />
+        <link href="<?= $this->baseUrl('css/styles/jquery.ui.timepicker.css') ?>" rel="stylesheet" type="text/css" />
+        <link href="<?= $this->baseUrl('css/styles/jquery.ui.autocomplete.css') ?>" rel="stylesheet" type="text/css" />
+
+        <!--  Default CSS -->
+        <?php
+        echo $this->headLink();
+        echo $this->layout()->headlink;
+        ?>
+        <link href="<?= $this->baseUrl('css/styles/custom.css') ?>" rel="stylesheet" type="text/css" />
+		
+		<script type="text/javascript">
+            var CANCEL_ESTIMATE_LIMIT = <?php echo $CANCEL_ESTIMATE_LIMIT; ?>;
+            var VERIF_SCROLLTO = <?php echo $VERIF_SCROLLTO; ?>;
+        </script>
+
+        <!-- JavaScript at the bottom for fast page loading -->
+        <script type="text/javascript">
+            var $baseUrl = "<?= $this->baseUrl() ?>";
+        </script>
+        <!-- Scripts -->
+        <script src="<?= $this->baseUrl('js/libs/jquery-1.7.2.min.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/setup.js'); ?>"></script>
+
+        <!-- Jquery UI + autocomplete -->
+        <script src="<?= $this->baseUrl('js/libs/jquery-ui-1.8.6.custom.min.js'); ?>" type="text/javascript"></script>
+        <script src="<?= $this->baseUrl('js/libs/jquery-ui/jquery.ui.core.js'); ?>" type="text/javascript"></script>
+        <script src="<?= $this->baseUrl('js/libs/jquery-ui/jquery.ui.widget.js'); ?>" type="text/javascript"></script>
+        <script src="<?= $this->baseUrl('js/libs/jquery-ui/jquery.ui.position.js'); ?>" type="text/javascript"></script>
+        <script src="<?= $this->baseUrl('js/libs/jquery-ui/jquery.ui.mouse.js'); ?>" type="text/javascript"></script>
+        <script src="<?= $this->baseUrl('js/libs/jquery-ui/jquery.ui.draggable.js'); ?>" type="text/javascript"></script>
+        <script src="<?= $this->baseUrl('js/libs/jquery-ui/jquery.ui.droppable.js'); ?>" type="text/javascript"></script>
+        <script src="<?= $this->baseUrl('js/libs/jquery-ui/jquery.ui.sortable.js'); ?>" type="text/javascript"></script>
+        <script src="<?= $this->baseUrl('js/libs/jquery-ui/jquery.ui.selectable.js'); ?>" type="text/javascript"></script>
+        <script src="<?= $this->baseUrl('js/libs/jquery-ui/jquery.ui.autocomplete.js'); ?>" type="text/javascript"></script>
+        <script src="<?= $this->baseUrl('js/libs/glDatePicker/glDatePicker.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/libs/DataTables/jquery.dataTables.min.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/libs/DataTables/sort.dataTables.min.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/libs/formValidator/jquery.validationEngine.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/libs/formValidator/languages/jquery.validationEngine-fr.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/libs/formValidator/other-validations.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/libs/jquery.mtz.monthpicker.js'); ?>"></script>
+
+        <!-- Template functions -->
+        <script src="<?= $this->baseUrl('js/plugins/jq.ui.timepicker.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/plugins/jq.ui.timepicker-fr.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/plugins/jq.tmpl.min.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/plugins/jq.fileDownload.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/plugins/jq.date.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/plugins/jq.currency.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/plugins/jq.input.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/plugins/jq.navigable.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/plugins/jq.notify.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/plugins/jq.scroll.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/plugins/jq.tooltip.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/plugins/jq.modal.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/plugins/jq.tabs.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/plugins/jq.auto-resizing.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/plugins/jq.collapsible.js'); ?>"></script>
+
+        <script src="<?= $this->baseUrl('js/entity/sidebare.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/entity/init.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/entity/helpers.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/entity/general.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/entity/devis.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/entity/category.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/entity/categorypermission.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/entity/contact.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/entity/calendar.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/entity/product.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/entity/company.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/entity/formula.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/entity/permission.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/entity/configuration.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/entity/group.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/entity/action.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/entity/estimate.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/entity/user.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/entity/usergroup.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/entity/logout.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/entity/estimatefacture.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/entity/custom.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/entity/layout.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/entity/cheque.js'); ?>"></script>
+        <script src="<?= $this->baseUrl('js/entity/stats.js'); ?>"></script>
+        <!--script src="http://masonry.desandro.com/jquery.masonry.min.js"></script-->
+
+        <!-- Head Script -->
+        <?php
+        echo $this->headScript();
+        echo $this->layout()->headscript;
+        ?>
+    </head>
+
+    <body class="clearfix with-menu with-shortcuts">
+
+        <!-- Prompt IE 6 users to install Chrome Frame -->
+        <!--[if lt IE 7]><p class="message red-gradient simpler">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+        <header role="banner" id="title-bar" class="anthracite-gradient">
+            <h2>Gestion des devis</h2>
+            <!-- Button to open/hide menu -->
+            <a href="#" id="open-menu"><span>Menu</span></a>
+        </header>
+
+
+
+        <!-- Button to open/hide shortcuts -->
+        <a href="#" id="open-shortcuts"><span class="icon-thumbs"></span></a>
+
+        <!-- Main content -->
+        <section role="main" id="main">
+            <?php echo $this->layout()->content; ?>
+        </section>
+        <!-- End main content -->
+
+        <!-- Side tabs shortcuts -->
+        <ul class="children-tooltip tooltip-right" role="complementary" id="shortcuts">
+            <?php if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('devis'), 'add')): ?>
+                <li><a title="Créer un devis" class="shortcut-notes gotoestimate" id="tabEsitimate" href="<?= $this->baseUrl('/auth/estimate/devis') ?>" rel="AddEstimate" view="showCreateDevis"><span clas="globaltitle">Créer un devis</span></a></li>
+            <?php endif ?>
+            <?php if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('agenda'), 'view')): ?>
+                <li class="current"><a title="Agenda" class="shortcut-agenda tabShortcut " href="<?= $this->baseUrl('/auth/calendar/') ?>" rel="Agenda" id="tabAgenda" view="refreshcalendar"><span clas="globaltitle">Agenda</span></a></li>
+            <?php endif ?>
+            <?php if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('devis'), 'view')): ?>
+                <li><a title="Gestion des devis" class="shortcut-dashboard tabShortcut showEstimate globaltitle" id="tabEstimate" href="<?= $this->baseUrl('/auth/estimate/listestimate') ?>" rel="Estimate" view="refreshEstimate"><span clas="globaltitle">Gestion des devis</span></a></li>
+            <?php endif ?>
+            <?php
+            if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('contacts'), 'view') ||
+                    Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('entreprises'), 'view')):
+                ?>
+                <li><a title="Gestion de la clientèle" class="shortcut-contacts tabShortcut showContact globaltitle"  id="tabClient" href="<?= $this->baseUrl('/auth/contact') ?>" rel="Client" view="refreshContact"><span clas="globaltitle">Gestion de la clientèle</span></a></li>
+            <?php endif ?>
+            <?php
+            if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('articles'), 'view') ||
+                    Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('categories'), 'view') ||
+                    Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('formules'), 'view')):
+                ?>
+                <li class=""><a title="Gestion du catalogue" class="shortcut-medias tabShortcut globaltitle"   id="tabCatalogue" href="<?= $this->baseUrl('/auth/categoryproduct') ?>" rel="Catalogue" view="refreshProduct"><span clas="globaltitle">Gestion du catalogue</span></a></li>
+            <?php endif ?>
+            <?php
+            if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('utilisateurs'), 'view') ||
+                    Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('groupe'), 'view')):
+                ?>
+                <li class=""><a title="Gestions des utilisateurs" class="shortcut-stats tabShortcut showUser "  id="tabUser" href="<?= $this->baseUrl('/auth/user') ?>" rel="User"  view="refreshUser"><span clas="globaltitle">Gestion des utilisateurs</span></a></li>
+            <?php endif ?>
+            <?php
+            if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('permissions'), 'view') ||
+                    Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('actions'), 'view')):
+                ?>
+                <li><a title="Gestion des droits" class="shortcut-settings tabShortcut showPermission " id="tabAcl" href="<?= $this->baseUrl('/auth/acl') ?>" rel="Acl" view="refreshCategorypermission"><span clas="globaltitle">Gestion des droits</span></a></li>
+            <?php endif ?>
+            <?php if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('configuration'), 'view')): ?>
+                <li><a title="Gestion de la configuration" class="shortcut-messages tabShortcut showConfiguration " id="tabConfiguration" href="<?= $this->baseUrl('/auth/configuration') ?>" rel="Configuration" view="refreshConfiguration">Clés de configuration</span></a></li>
+            <?php endif ?>
+        </ul>
+
+        <!-- Sidebar/drop-down menu -->
+        <section id="menu" role="complementary">
+
+            <!-- This wrapper is used by several responsive layouts -->
+            <div id="menu-content" style="padding: 0px; margin: 0px; ">
+
+                <header>
+                    <span class="button icon-extract red-gradient with-tooltip compact" title="Déconnexion" style="cursor:pointer;" id="logout"></span>  <?php echo unserialize(Zend_Auth::getInstance()->getIdentity())->firstnameuser . ' ' . unserialize(Zend_Auth::getInstance()->getIdentity())->lastnameuser ?>
+                </header>
+
+                <!-- By default, this section is made for 4 icons, see the doc to learn how to change this, in "basic markup explained" -->
+                <ul id="access" class="children-tooltip">
+                    <?php if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('contacts'), 'add')): ?>
+                        <li><a  data-title="Créer un contact" class="cursor-pointer mtlCreate" title="Créer un contact" href="/auth/contact/add"><span class="icon-user"></span><span class="count blue-gradient">+</span></a></li>
+                    <?php endif ?>
+                    <?php if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('entreprises'), 'add')): ?>
+                        <li><a data-title="Créer une entreprise" class="cursor-pointer mtlCreate" title="Créer une entreprise"  href="<?= $this->baseUrl('/auth/company/add') ?>"><span class="icon-users"></span><span class="count blue-gradient">+</span></a></li>
+                    <?php endif ?>
+                    <?php if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('formules'), 'add')): ?>
+                        <li><a data-title="Créer une formule" class="cursor-pointer mtlCreate" title="Créer une formule" class="cursor-pointer" href="<?= $this->baseUrl('/auth/formula/add') ?>"><span class="icon-page-list"></span><span class="count blue-gradient">+</span></a></li>
+                    <?php endif ?>
+                    <?php if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('articles'), 'add')): ?>
+                        <li><a data-title="Créer un article" class="cursor-pointer mtlCreate" title="Créer un article" href="<?= $this->baseUrl('/auth/product/add') ?>"><span class="icon-page"></span><span class="count blue-gradient">+</span></a></li>
+                    <?php endif ?>
+                </ul>
+
+                <?php if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('devis'), 'view')): ?>
+                    <ul class="inputs" style="margin-bottom:0;">
+                        <li><span class="icon-search"></span><input id="autoDevis" type="text" name="NAME_PRODUCT" value="" class="input-unstyled" placeholder="Recherche de Devis" autocomplete="off" style="width:92%; height:25px;"></li>
+                    </ul>
+                <?php endif ?>
+
+                <ul class="big-menu collapsible as-accordion">
+                    <?php if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('devis'), 'view')): ?>
+                        <li class="grey-gradient arrow-down" style="text-shadow:0;">
+                            <span id="searchHeader">
+                                <span class="list-count">0</span>
+                                Résultats de la recherche
+                            </span>
+                            <ul style="padding-left:5px;" id="searchEst"></ul>
+                        </li>
+                        <li class="red-gradient arrow-down">
+                            <span>
+                                <span class="list-count">0</span>
+                                Devis à Solder
+                            </span>
+                            <ul style="padding-left:5px;" id="asoldeEst"></ul>
+                        </li>
+
+                        <li class="orange-gradient arrow-down">
+                            <span>
+                                <span class="list-count">0</span>
+                                Devis en Attente
+                            </span>
+                            <ul style="padding-left:5px;" id="attenteEst"></ul>
+                        </li>
+                        <li class="green-gradient arrow-down">
+                            <span>
+                                <span class="list-count">0</span>
+                                Devis Confirmé
+                            </span>
+                            <ul style="padding-left:5px;" id="confirmeEst"></ul>
+                        </li>
+                        <li class="blue-gradient arrow-down">
+                            <span>
+                                <span class="list-count">0</span>
+                                Devis Annulé
+                            </span>
+                            <ul style="padding-left:5px;" id="annuleEst"></ul>
+                        </li>
+
+                        <div class="hidden">
+                            <ul style="padding-left:5px;" id="confirmeEstClone">
+                                <li class="estimate children-tooltip arrow-down sidebar-itemlist" >
+                                    <span class="hidden idEst"></span>
+                                    <span class="titleEst gotoestimate">
+                                        <small class="tag green-bg float-right tiny dateEst cursor-pointer" style="font-size:11px;"></small>
+                                        <span class="hidden idEst"></span>
+                                    </span>
+                                    <span class="cursor-pointer gotoestimate anthracite tiny-margin-left titleEst">
+                                        <span class="value"></span>
+                                        <span class="hidden idEst"></span>
+                                    </span>
+                                    <span class="gotoestimate button white-gradient float-left tiny" title="Dupliquer">
+                                        <span class="icon-pictures"><!--?-->
+                                            <span class="hidden idEst"></span>
+                                        </span>
+                                    </span>
+                                </li>
+                            </ul>
+                            <ul style="padding-left:5px;" id="attenteEstClone">
+                                <li class="estimate children-tooltip arrow-down sidebar-itemlist" >
+                                    <span class="titleEst gotoestimate">
+                                        <small class="tag orange-bg float-right tiny dateEst cursor-pointer" style="font-size:11px;"></small>
+                                        <span class="hidden idEst"></span>
+                                    </span>
+                                    <span class="cursor-pointer gotoestimate anthracite tiny-margin-left titleEst">
+                                        <span class="value"></span>
+                                        <span class="hidden idEst"></span>
+                                    </span>
+                                    <span class="gotoestimate button white-gradient float-left tiny" title="Dupliquer">
+                                        <span class="icon-pictures">
+                                            <span class="hidden idEst"></span>
+                                        </span>
+                                    </span>
+                                </li>
+                            </ul>
+                            <ul style="padding-left:5px;" id="annuleEstClone">
+                                <li class="estimate children-tooltip arrow-down sidebar-itemlist" >
+                                    <span class="titleEst gotoestimate">
+                                        <small class="tag blue-bg float-right tiny dateEst cursor-pointer" style="font-size:11px;"></small>
+                                        <span class="hidden idEst"></span>
+                                    </span>
+                                    <span class="cursor-pointer gotoestimate anthracite tiny-margin-left titleEst">
+                                        <span class="value"></span>
+                                        <span class="hidden idEst"></span>
+                                    </span>
+                                    <span class="gotoestimate button white-gradient float-left tiny" title="Dupliquer">
+                                        <span class="icon-pictures">
+                                            <span class="hidden idEst"></span>
+                                        </span>
+                                    </span>
+                                </li>
+                            </ul>
+                            <ul style="padding-left:5px;" id="asoldeEstClone">
+                                <li class="estimate children-tooltip arrow-down sidebar-itemlist" >
+                                    <span class="titleEst gotoestimate">
+                                        <small class="tag red-bg float-right tiny dateEst cursor-pointer" style="font-size:11px;"></small>
+                                        <span class="hidden idEst"></span>
+                                    </span>
+                                    <span class=" cursor-pointer gotoestimate anthracite tiny-margin-left titleEst">
+                                        <span class="value"></span>
+                                        <span class="hidden idEst"></span>
+                                    </span>
+                                    <span class="gotoestimate button white-gradient float-left tiny" title="Dupliquer">
+                                        <span class="icon-pictures">
+                                            <span class="hidden idEst"></span>
+                                        </span>
+                                    </span>
+                                </li>
+                            </ul>
+                            <ul style="padding-left:5px;" id="soldeEstClone">
+                                <li class="estimate children-tooltip arrow-down sidebar-itemlist" >
+                                    <span class="titleEst gotoestimate">
+                                        <small class="tag white-gradient float-right tiny dateEst cursor-pointer" style="font-size:11px;"></small>
+                                        <span class="hidden idEst"></span>
+                                    </span>
+                                    <span class="cursor-pointer gotoestimate anthracite tiny-margin-left titleEst">
+                                        <span class="value"></span>
+                                        <span class="hidden idEst"></span>
+                                    </span>
+                                    <span class="gotoestimate button white-gradient float-left tiny" title="Dupliquer">
+                                        <span class="icon-pictures">
+                                            <span class="hidden idEst"></span>
+                                        </span>
+                                    </span>
+                                </li>
+                            </ul>
+                            <ul style="padding-left:5px;" id="searchEstClone">
+                                <li class="estimate children-tooltip arrow-down sidebar-itemlist">
+                                    <span class="titleEst gotoestimate">
+                                        <small class="tag grey-bg float-right tiny dateEst cursor-pointer" style="font-size:11px;"></small>
+                                        <span class="hidden idEst"></span>
+                                    </span>
+                                    <span class="cursor-pointer anthracite tiny-margin-left titleEst gotoestimate">
+                                        <span class="value"></span>
+                                        <span class="hidden idEst"></span>
+                                    </span>
+                                    <span class="button white-gradient float-left tiny gotoestimate" title="Dupliquer">
+                                        <span class="icon-pictures">
+                                            <span class="hidden idEst"></span>
+                                        </span>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    <?php endif ?>
+
+                    <?php
+                    if (
+                            Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('articles'), 'add') ||
+                            Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('categories'), 'add') ||
+                            Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('formules'), 'add') ||
+                            Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('contacts'), 'add') ||
+                            Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('entreprises'), 'add') ||
+                            Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('utilisateurs'), 'add') ||
+                            Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('groupe'), 'add') ||
+                            Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('permissions'), 'add') ||
+                            Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('actions'), 'add') ||
+                            Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('configuration'), 'add') ||
+                            Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('fiche de production'), 'view') ||
+                            Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('remise de chèques'), 'view')
+                    ):
+                        ?>
+                        <li class="anthracite-gradient arrow-down">
+                            <span>
+                                Fonctions Express
+                            </span>
+                            <ul style="padding-left: 5px;">
+                                <?php if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('fiche de production'), 'view')): ?>
+                                    <li class="estimate arrow-down anthracite icon-inbox sidebar-itemlist">
+                                        <a class="mtCreate anthracite" title="Fiche de Production"  href="<?= $this->baseUrl('/auth/estimate/ficheproduction') ?>" rel="formFicheproduction">
+                                            Fiche de Production
+                                        </a>
+                                    </li>
+                                <?php endif ?>
+                                <?php if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('remise de chèques'), 'view')): ?>
+                                    <li class="estimate arrow-down anthracite icon-right-fat sidebar-itemlist">
+                                        <a class="mtCreate anthracite" title="Remise de Chèques"  href="<?= $this->baseUrl('/auth/estimate/checkpresentation') ?>" rel="formFicheproduction">
+                                            Remise de Chèques
+                                        </a>
+                                    </li>
+                                <?php endif ?>
+                                <?php if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('articles'), 'add')): ?>
+                                    <li class="estimate arrow-down anthracite icon-page-list sidebar-itemlist">
+                                        <a class="mtCreate anthracite" title="Article : Créer un article" href="<?= $this->baseUrl('/auth/product/add') ?>">
+                                            Article : Créer un article
+                                        </a>
+                                    </li>
+                                <?php endif ?>
+                                <?php if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('categories'), 'add')): ?>
+                                    <li class="estimate arrow-down anthracite icon-pages sidebar-itemlist">
+                                        <a class="mtCreate anthracite" title="Article : Créer une catégorie" href="<?= $this->baseUrl('/auth/categoryproduct/add') ?>">
+                                            Article : Créer une catégorie
+                                        </a>
+                                    </li>
+                                <?php endif ?>
+                                <?php if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('formules'), 'add')): ?>
+                                    <li class="estimate arrow-down anthracite icon-list sidebar-itemlist">
+                                        <a class="mtCreate anthracite" title="Article : Créer une formule" href="<?= $this->baseUrl('/auth/formula/add') ?>">
+                                            Article : Créer une formule
+                                        </a>
+                                    </li>
+                                <?php endif ?>
+                                <?php if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('contacts'), 'add')): ?>
+                                    <li class="estimate arrow-down anthracite icon-card sidebar-itemlist">
+                                        <a class="mtCreate anthracite" title="Contact : Créer un contact" href="<?= $this->baseUrl('/auth/contact/add') ?>">
+                                            Contact : Créer un contact
+                                        </a>
+                                    </li>
+                                <?php endif ?>
+                                <?php if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('entreprises'), 'add')): ?>
+                                    <li class="estimate arrow-down anthracite icon-flag sidebar-itemlist">
+                                        <a class="mtCreate anthracite" title="Contact : Créer une entreprise"  href="<?= $this->baseUrl('/auth/company/add') ?>">
+                                            Contact : Créer une entreprise
+                                        </a>
+                                    </li>
+                                <?php endif ?>
+                                <?php if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('utilisateurs'), 'add')): ?>
+                                    <li class="estimate arrow-down anthracite icon-user sidebar-itemlist">
+                                        <a class="mtCreate anthracite" title="Utilisateur : Créer un utilisateur" href="<?= $this->baseUrl('/auth/user/add') ?>">
+                                            Utilisateur : Créer un utilisateur
+                                        </a>
+                                    </li>
+                                <?php endif ?>
+                                <?php if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('groupe'), 'add')): ?>
+                                    <li class="estimate arrow-down anthracite icon-users sidebar-itemlist">
+                                        <a class="mtCreate anthracite" title="Utilisateur : Créer un groupe" href="<?= $this->baseUrl('/auth/usergroup/add') ?>">
+                                            Utilisateur : Créer un groupe
+                                        </a>
+                                    </li>
+                                <?php endif ?>
+                                <?php if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('permissions'), 'add')): ?>
+                                    <li class="estimate arrow-down anthracite icon-pages sidebar-itemlist">
+                                        <a class="mtCreate anthracite" title="Permission : Créer une catégorie" href="<?= $this->baseUrl('/auth/categorypermission/add') ?>">
+                                            Permission : Créer une catégorie
+                                        </a>
+                                    </li>
+                                <?php endif ?>
+                                <?php if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('actions'), 'add')): ?>
+                                    <li class="estimate arrow-down anthracite icon-list sidebar-itemlist">
+                                        <a class="mtCreate anthracite" title="Permission : Créer une action"  href="<?= $this->baseUrl('/auth/action/add') ?>">
+                                            Permission : Créer une action
+                                        </a>
+                                    </li>
+                                <?php endif ?>
+                                <?php if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('configuration'), 'add')): ?>
+                                    <li class="estimate arrow-down anthracite icon-star sidebar-itemlist">
+                                        <a class="mtCreate anthracite" title="Configuration : Créer une clé"  href="<?= $this->baseUrl('/auth/configuration/add') ?>">
+                                            Configuration : Créer une clé
+                                        </a>
+                                    </li>
+                                <?php endif ?>
+                            </ul>
+                        </li>
+                    <?php endif ?>
+
+                </ul>
+                <input type="hidden" id="idproxyvalue">
+                <input type="hidden" id="statusproxyvalue">
+            </div>
+            <!-- End content wrapper -->
+            <?php if (Zend_Registry::get('acl')->isAllowed(new Custom_Acl_UserRole(), new Custom_Acl_Resources('devis'), 'view')): ?>
+                <!-- This is optional -->
+                <footer id="menu-footer">
+                    <p class="button-height black-inputs">
+                        <label for="auto-refresh">Mise à jour automatique</label>
+                        &nbsp;&nbsp;&nbsp;
+                        <input type="checkbox" name="auto-refresh" id="auto-refresh" class="switch medium">
+                    </p>
+                </footer>
+            <?php endif ?>
+        </section>
+        <!-- End sidebar/drop-down menu -->
+
+        <?php
+        $_registry = Zend_Registry::getInstance();
+        $confKey = $_registry->doctrine->_em->getRepository('Auth_Model_Configuration')->findByNameconfiguration('CANCEL_ESTIMATE_LIMIT');
+        $CANCEL_ESTIMATE_LIMIT = $confKey[0]->getValueconfiguration();
+        $confKeyscroll = $_registry->doctrine->_em->getRepository('Auth_Model_Configuration')->findByNameconfiguration('VERIF_SCROLLTO');
+        $VERIF_SCROLLTO = $confKeyscroll[0]->getValueconfiguration();
+        ?>
+
+        
+    </body>
+</html>

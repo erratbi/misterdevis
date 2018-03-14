@@ -1,0 +1,44 @@
+<? if ($this->count != 0): ?>
+	<a class="btn dropdown-toggle" id="btn-notif" data-toggle="dropdown"> <i class="fa fa-bell"></i>
+		<? if ($this->count): ?>
+			<span class="count"><?= $this->count; ?></span>
+		<? endif; ?>
+	</a>
+	<ul id="menu-notif" class="dropdown-menu notifications-list">
+		<li class="pointer">
+			<div class="pointer-inner">
+				<div class="arrow"></div>
+			</div>
+		</li>
+		<li class="item-header">
+			<?= "Vous avez {$this->count} nouvelle(s) notification(s)"; ?>
+		</li>
+		<?php foreach ($this->notifications as $notif): ?>
+			<li class="item">
+				<a href="/auth/chauffage/edit/id/<?= $notif['id_demande'] ?>"> <i class="fa fa-comment"></i> <span
+						class="content">
+						<strong>
+							<?= $this->escape($notif['nom_particulier']) ?>
+							<?= $this->escape($notif['prenom_particulier']) ?>
+							<?= $this->escape(date('d/m/Y', strtotime($notif['date_creation']))) ?>
+						</strong>
+					</span> </a>
+			</li>
+		<?php endforeach; ?>
+
+		<li class="item-footer">
+			<a href="/auth/chauffage"> Afficher tout </a>
+		</li>
+	</ul>
+
+<? else: ?>
+	<a id="btn-notif" class="btn dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-bell"></i> </a>
+	<ul class="dropdown-menu notifications-list">
+		<li class="pointer">
+			<div class="pointer-inner">
+				<div class="arrow"></div>
+			</div>
+		</li>
+		<li class="item-header">Vous avez aucune notification</li>
+	</ul>
+<? endif; ?>

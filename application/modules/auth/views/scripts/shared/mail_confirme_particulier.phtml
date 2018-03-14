@@ -1,0 +1,33 @@
+<div style="width: 650px; margin: 10px auto;">
+	<div style="text-align: center; padding: 10px;"><img src="http://www.webonline2018.com/resources_fo_ehcg/img/company_logo_1.jpg" /></div>
+	<h1 style="background-color:#0184c2;padding: 50px;color:#fff;text-align: center; font-size:20px">Un professionnel est intéressé par votre demande</h1>
+	<p>Bonjour <?= $this->particulier->prenom_particulier . ' ' . $this->particulier->nom_particulier ?>,</p>
+	<p>Nous avons le plaisir de vous informer qu'un Professionnel est intéressé par votre Projet et qu'il prendra rapidement contact avec vous afin de convenir d'un rendez-vous pour vous proposer gratuitement un
+	   devis.
+	</p>
+	
+	<p>Dans le cas ou il n'arriverait pas à vous joindre dans les heures qui suivent, merci de le contacter par téléphone ou par mail afin de convenir d'un rendez-vous.</p>
+	
+	<p>Voici ses coordonnées:</p>
+	
+	<ul>
+		<li>Nom : <?= $this->artisan->nom_artisan ?></li>
+		<li>Prénom : <?= $this->artisan->prenom_artisan ?></li>
+		<li>Société : <?= $this->artisan->raison_sociale ?></li>
+		<li>Adresse : <?= $this->artisan->getAdresse() ?></li>
+		<li>Ville : <?= $this->artisan->ville ?></li>
+		<li>Code Postal : <?= $this->artisan->code_postal ?></li>
+		<li>Téléphone : <?= $this->artisan->telephone_portable ?></li>
+		<li>E-mail : <?= $this->artisan->email_artisan ?></li>
+	</ul>
+	
+	<p>L'ensemble de l'équipe de <a href="http://www.mister-devis.com">www.mister-devis.com</a> vous remercie pour votre confiance</p>
+	<p>Cordialement</p>
+	
+	<p style="margin-top: 50px">
+		<strong>Georges KAPPLAN</strong><br><br>
+		<span>
+			Directeur Commercial<br> <a href="mailto:georges.kapplan@mister-devis.com">georges.kapplan@mister-devis.com</a><br> 09 88 77 27 00 </span>    <br><br>
+		<img src="http://www.webonline2018.com/resources_fo_ehcg/img/company_logo_1.jpg" style="width: 80px" />
+	</p>
+</div>

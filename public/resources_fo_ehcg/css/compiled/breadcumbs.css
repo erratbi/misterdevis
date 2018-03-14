@@ -1,0 +1,72 @@
+ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#breadcrumbs-two {
+	overflow: hidden;
+	width: 100%;
+	font-size: 11px;
+	padding-left:1.5%;
+	/*margin-top: 10px;*/
+	margin-bottom: 10px;
+}
+
+#breadcrumbs-two li {
+	float: left;
+	margin: 0 .5em 0 0;
+}
+
+#breadcrumbs-two a {
+	background: #6A6E9B;
+	padding: .3em .8em;
+	float: left;
+	text-decoration: none;
+	color: #fff;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+	position: relative;
+}
+
+#breadcrumbs-two a:hover {
+	background: #01b9fe;
+}
+
+#breadcrumbs-two a::before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	margin-top: -1.5em;
+	border-width: 1.5em 0 1.5em 1em;
+	border-style: solid;
+	border-color: #6A6E9B #6A6E9B #6A6E9B transparent;
+	left: -1em;
+}
+
+#breadcrumbs-two a:hover::before {
+	border-color: #01b9fe #01b9fe #01b9fe transparent;
+}
+
+#breadcrumbs-two a::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	margin-top: -1.5em;
+	border-top: 1.5em solid transparent;
+	border-bottom: 1.5em solid transparent;
+	border-left: 1em solid #6A6E9B;
+	right: -1em;
+}
+
+#breadcrumbs-two a:hover::after {
+	border-left-color: #01b9fe;
+}
+
+#breadcrumbs-two .current, #breadcrumbs-two .current:hover {
+	/*font-weight: bold;*/
+	background: none;
+	color: #000000;
+}
+
+#breadcrumbs-two .current::after, #breadcrumbs-two .current::before {
+	content: normal;
+}
